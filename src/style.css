@@ -1,0 +1,128 @@
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-neutral-900 text-white;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+header {
+  width: 100%;
+  transition: background-color 0.3s ease-in-out;
+}
+header img {
+  height: 64px;
+  width: auto;
+}
+header li, header .cart-widget {
+  @apply hover:text-neutral-300;
+  transition: all 0.3s ease-in-out;
+}
+header #navBar {
+  transition: top 0.4s ease-in-out;
+}
+
+main {
+  padding-top: 80px;
+}
+
+footer {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-direction: column;
+  margin-top: 32px;
+}
+@media screen and (min-width: 768px) {
+  footer .container {
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 0;
+  }
+}
+footer img {
+  height: 120px;
+  width: auto;
+}
+@media screen and (min-width: 768px) {
+  footer img {
+    justify-content: start;
+  }
+}
+footer ul {
+  display: flex;
+  gap: 24px;
+  height: 128px;
+  padding-left: 16px;
+  align-items: center;
+  padding-left: 0;
+}
+footer ul li {
+  list-style: none;
+  transition: all 0.3s ease-in-out;
+  @apply hover:text-neutral-300;
+}
+footer ul li a {
+  text-decoration: none;
+}
+footer ul li a i {
+  font-size: 32px;
+}
+
+.home {
+  padding-top: 0;
+}
+.home__banner {
+  background-image: url("https://images.unsplash.com/photo-1548768041-2fceab4c0b85?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-position: center;
+  width: 100%;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home__sale__item {
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+.home__sale__item__background {
+  border-radius: 8px;
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.3s;
+  transition: opacity 0.5 ease-in-out;
+}
+.home__sale__item p {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: none;
+}
+.home__sale__item:hover .home__sale__item__background {
+  opacity: 0.5;
+}
+.home__sale__item:hover p {
+  color: white;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=style.css.map */

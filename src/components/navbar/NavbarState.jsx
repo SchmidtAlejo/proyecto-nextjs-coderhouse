@@ -1,0 +1,93 @@
+"use client"
+
+import Image from "next/image"
+import logo from "../../assets/logo.webp"
+import CartWidget from "./CartWidget"
+import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
+import CategoryListNavbar from "./CategoryListNavbar"
+
+export default function NavbarState() {
+
+    const [toggleMenu, setToggleMenu] = useState(false);
+    const [toggleCategory, setToggleCategory] = useState(false);
+
+    const navBar = useRef(null);
+
+
+    useEffect(() => {
+        if (toggleMenu) {
+            navBar.current.classList.replace('top-[-64px]', 'top-20');
+        }
+        else {
+            navBar.current.classList.replace('top-20', 'top-[-64px]');
+            closeCategoryList();
+        }
+    }, [toggleMenu])
+
+    const onClickMenuButton = () => {
+        toggleMenu ?
+            setToggleMenu(false) :
+            setToggleMenu(true);
+    }
+
+    const closeCategoryList = () => {
+        setToggleCategory(false);
+    }
+
+    const closeMenu = () => {
+        setToggleCategory(false);
+        setToggleMenu(false);
+    }
+
+    return (
+        <>
+            <div className="px-3 md:px-0 flex flex-row justify-between items-center relative z-50 py-2 bg-neutral-800 w-full md:w-auto">
+                <Link href={"/"}>
+                    <Image className="hover:scale-105 transition-3" src={logo} alt="logo" priority={1} />
+                </Link>
+                <button className="navbar-toggler md:hidden" onClick={onClickMenuButton}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
+                        <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                    </svg>
+                </button>
+            </div>
+            <div className="fixed left-0 top-[-64px] bg-neutral-800 md:flex w-full md:static md:top-auto" id="navBar" ref={navBar}>
+                <div style={{ flex: 1 }}></div>
+                <ul className="flex flex-col md:flex-row text-center items-center gap-x-4 gap-y-3 transition-3">
+                    <li className="nav-item h-full w-full">
+                        <CategoryListNavbar
+                            toggleCategory={toggleCategory}
+                            closeCategoryList={closeCategoryList}
+                            setToggleCategory={setToggleCategory}
+                            closeMenu={closeMenu}
+                        />
+                    </li>
+                    <li className="nav-item">
+                        <Link
+                            href={"/about-us"}
+                            className="nav-link text-center block w-max"
+                            onClick={closeMenu}>
+                            About us
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link
+                            href={"/contact"}
+                            className="nav-link text-center"
+                            onClick={closeMenu}>
+                            Contact
+                        </Link>
+                    </li>
+                </ul>
+                <Link
+                    className="flex items-center justify-center md:justify-end gap-x-2 md:pr-[10px] cursor-pointer cart-widget  my-3"
+                    style={{ flex: 1 }}
+                    href={'/cart'}
+                    onClick={closeMenu}>
+                    <CartWidget />
+                </Link>
+            </div>
+        </>
+    )
+}

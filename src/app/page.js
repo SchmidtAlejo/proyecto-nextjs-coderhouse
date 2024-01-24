@@ -1,5 +1,5 @@
-import Banner from "../components/Banner"
-import ItemsSaleContainer from "../components/ItemsSaleContainer";
+import Banner from "../components/home/Banner"
+import ItemsSaleContainer from "../components/home/ItemsSaleContainer";
 
 export const metadata = {
   title: "BORD",

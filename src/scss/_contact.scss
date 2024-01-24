@@ -1,0 +1,12 @@
+.contact {
+  input {
+    @apply my-4 w-full h-12 rounded-md bg-neutral-700 pl-4
+        focus:outline-none focus:ring-1 focus:ring-neutral-600;
+  }
+
+  textarea {
+    @apply my-4 w-full h-12 rounded-md bg-neutral-700 pl-4 pt-2
+        focus:outline-none focus:ring-1 focus:ring-neutral-600;
+        min-height: 100px;
+  }
+}

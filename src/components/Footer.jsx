@@ -5,9 +5,15 @@ export default function Footer() {
     return (
         <footer className="bg-neutral-800">
             <div className="container mx-auto">
-                <a href="#">
-                    <Image src={logo} alt="logo"/>
-                </a>
+                <Link href={"/"}>
+                    <Image
+                        className="hover:scale-105 transition-3"
+                        src={logo}
+                        alt="logo"
+                        width={1000}
+                        height={1000}
+                    />
+                </Link>
                 <ul className="md:pl-4 md:border-l md:border-white">
                     <li>
                         <a href="#facebook">
@@ -50,3 +56,4 @@ export default function Footer() {
     )
 }
 import React from 'react'
+import Link from "next/link"

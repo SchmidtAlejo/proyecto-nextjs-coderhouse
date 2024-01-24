@@ -3,6 +3,11 @@ import products from "@/data/products"
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+    title: "Cart",
+    description: "Cart"
+}
+
 export default function page() {
 
     const product = products[0];

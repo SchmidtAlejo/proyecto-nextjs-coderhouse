@@ -3,9 +3,17 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import products from "@/data/products";
 import Image from "next/image";
 
+export async function generateMetadata({params, searchParams}, parent) {
+    const product = products.find(product => product.id === parseInt(params.productId));
+    return {
+        title: product.title,
+        description: product.description
+    }
+}
+
 export default function page({ params }) {
 
-    const product = products.find(product => product.id === parseInt(params.productId))
+    const product = products.find(product => product.id === parseInt(params.productId));
 
     return (
         <main className="product-detail">

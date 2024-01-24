@@ -1,5 +1,10 @@
 import ButtonFill from "@/components/ui/ButtonFill";
 
+export const metadata = {
+  title: "Contact",
+  description: "Contact with our staff"
+}
+
 export default function page() {
   return (
     <main className="contact">

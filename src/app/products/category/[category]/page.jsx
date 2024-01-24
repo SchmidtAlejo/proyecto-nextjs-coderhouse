@@ -2,6 +2,16 @@ import ListContainer from "@/components/ListContainer";
 import products from "@/data/products";
 import capitalLeterHelper from "@/helpers/capitalLeterHelper";
 
+export async function generateMetadata({params, searchParams}, parent) {
+
+    const validateCategorie =params.category !== "all%20products"
+
+    return {
+        title: validateCategorie? capitalLeterHelper(params.category) : "All products",
+        description: `List of ${capitalLeterHelper(params.category)} that are on sale`
+    }
+}
+
 export default function page({ params }) {
 
     let productsCategory;

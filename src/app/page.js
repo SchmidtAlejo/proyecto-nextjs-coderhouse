@@ -3,7 +3,7 @@ import ItemsSaleContainer from "../components/home/ItemsSaleContainer";
 
 export const metadata = {
   title: "BORD",
-  description: "Venta de productos"
+  description: "Sale of products"
 }
 
 function App() {

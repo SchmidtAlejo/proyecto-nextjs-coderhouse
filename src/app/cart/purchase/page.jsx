@@ -1,5 +1,10 @@
 import Link from "next/link";
 
+export const metadata = {
+    title: "Purchase",
+    description: "Purchase completed"
+}
+
 export default function page() {
     return (
         <main>

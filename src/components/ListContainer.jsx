@@ -5,7 +5,7 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 export default function ListContainer({ products, children }) {
     return (
         <div className="bg-neutral-900">
-            <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8">
+            <div className="container-space">
                 <Breadcrumbs category={children} />
                 <h1 className="text-2xl font-bold tracking-tight text-white">{children}</h1>
 
@@ -13,7 +13,7 @@ export default function ListContainer({ products, children }) {
                     {
                         products.map(product => (
                             <Link
-                                className="h-72"
+                                className="h-72 md:h-56"
                                 key={product.id}
                                 href={`/products/${product.id}`}>
                                 <div className="group relative flex flex-col h-full">

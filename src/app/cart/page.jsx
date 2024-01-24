@@ -2,6 +2,7 @@ import ButtonFill from "@/components/ui/ButtonFill";
 import products from "@/data/products"
 import Image from "next/image";
 import Link from "next/link";
+import Back from "@/components/Back";
 
 export const metadata = {
     title: "Cart",
@@ -15,10 +16,10 @@ export default function page() {
     console.log(product);
 
     return (
-        <main>
-            <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8">
-                <h1 className="text-4xl max-w-[768px] ">Cart</h1>
-                <div className="mt-12 bg-neutral-800 p-6 rounded-md max-w-[768px] mx-auto">
+        <main className="">
+            <div className="container-space">
+                <h1 className="text-4xl">Cart</h1>
+                <div className="mt-12 bg-neutral-800 p-6 rounded-md mx-auto">
                     <div className="flex gap-x-6">
                         <div className="w-48 h-24 my-auto">
                             <Image width={1000} height={1000}
@@ -40,13 +41,14 @@ export default function page() {
                         </div>
                     </div>
                 </div>
-                <div className="mx-auto max-w-[768px] mt-6">
+                <div className="mt-6">
                     <Link href={'/cart/purchase'}>
                         <ButtonFill>
                             Buy
                         </ButtonFill>
                     </Link>
                 </div>
+                <Back className="mt-6"/>
             </div>
         </main>
     )

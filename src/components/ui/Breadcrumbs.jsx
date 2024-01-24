@@ -1,6 +1,6 @@
 import capitalLeterHelper from "@/helpers/capitalLeterHelper";
 import Link from "next/link";
-import BreadcrumbsBack from "./BreadcrumbsBack";
+import BreadcrumbsBack from "../Back";
 
 export default function Breadcrumbs({ category, productTitle, className }) {
 

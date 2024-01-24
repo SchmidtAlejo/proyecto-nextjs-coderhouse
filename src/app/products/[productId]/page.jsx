@@ -17,7 +17,7 @@ export default function page({ params }) {
 
     return (
         <main className="product-detail">
-            <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8">
+            <div className="container-space">
                 <Breadcrumbs category={product.category} productTitle={product.title} />
                 <div className="mx-auto flex flex-col md:flex-row gap-12">
                     <div className="h-96 w-full flex-grow-[8] basis-1 self-center flex justify-center">

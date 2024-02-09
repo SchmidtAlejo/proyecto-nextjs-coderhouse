@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react";
 
 export const useCount = (initial = 0, min, max) => {

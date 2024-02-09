@@ -1,19 +1,31 @@
 import { Counter } from "@/components/Counter";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import products from "@/data/products";
 import Image from "next/image";
 
+const getProduct = async (id) => {
+    const response=  await fetch(`http://localhost:3000/api/products/${id}`,
+        {
+            next: {
+                revalidate: 3600
+            }
+        });
+    if (!response.ok) {
+        throw new Error('Error with the request')
+    }
+    return response.json();
+}
+
 export async function generateMetadata({params, searchParams}, parent) {
-    const product = products.find(product => product.id === parseInt(params.productId));
+    const product = await getProduct(params.productId);
     return {
         title: product.title,
         description: product.description
     }
 }
 
-export default function page({ params }) {
+export default async function page({ params }) {
 
-    const product = products.find(product => product.id === parseInt(params.productId));
+    const product = await getProduct(params.productId);
 
     return (
         <main className="product-detail">
@@ -25,7 +37,8 @@ export default function page({ params }) {
                             src={product.images[0]}
                             width={1000}
                             height={1000}
-                            className="rounded-lg h-full w-fit"
+                            className="rounded-lg h-full w-fit object-cover"
+                            alt={`Image of ${product.title}`}
                         />
                     </div>
                     <div className=" flex flex-col gap-y-6 flex-grow-[4] basis-1">

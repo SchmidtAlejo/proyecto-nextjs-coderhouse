@@ -14,6 +14,18 @@ export default function NavbarState() {
 
     const navBar = useRef(null);
 
+    const onResize = () => {
+        if (typeof window !== 'undefined' && window.innerWidth > 768) {
+            closeMenu()
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', onResize);
+        return () => {
+            window.removeEventListener('resize', onResize);
+        }
+    })
 
     useEffect(() => {
         if (toggleMenu) {
@@ -52,9 +64,8 @@ export default function NavbarState() {
                     </svg>
                 </button>
             </div>
-            <div className="fixed left-0 top-[-64px] bg-neutral-800 md:flex w-full md:static md:top-auto" id="navBar" ref={navBar}>
-                <div style={{ flex: 1 }}></div>
-                <ul className="flex flex-col md:flex-row text-center items-center gap-x-4 gap-y-3 transition-3">
+            <div className="fixed left-0 top-[-64px] bg-neutral-800 md:flex w-full md:static md:top-auto justify-between" id="navBar" ref={navBar}>
+                <ul className="flex flex-col md:flex-row text-center items-center gap-x-4 gap-y-3 transition-3 mx-auto">
                     <li className="nav-item h-full w-full">
                         <CategoryListNavbar
                             toggleCategory={toggleCategory}
@@ -82,7 +93,6 @@ export default function NavbarState() {
                 </ul>
                 <Link
                     className="flex items-center justify-center md:justify-end gap-x-2 md:pr-[10px] cursor-pointer cart-widget  my-3"
-                    style={{ flex: 1 }}
                     href={'/cart'}
                     onClick={closeMenu}>
                     <CartWidget />

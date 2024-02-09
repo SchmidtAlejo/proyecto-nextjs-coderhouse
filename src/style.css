@@ -59,6 +59,7 @@ header .category-list:hover ul {
 
 main {
   padding-top: 80px;
+  flex: 1;
 }
 
 footer {

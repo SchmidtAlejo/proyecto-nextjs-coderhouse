@@ -1,4 +1,4 @@
-export default [
+export const categories = [
     "all products",
     "smartphones",
     "laptops",

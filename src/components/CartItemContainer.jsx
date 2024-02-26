@@ -21,12 +21,14 @@ export default function CartItemContainer() {
         router.push("/cart/purchase");
     }
 
+    console.log(cart);
+
     return (
         <>
             <div className="mt-12 bg-neutral-800 p-6 rounded-md mx-auto flex flex-col gap-y-4">
                 {cart.length > 0 ?
                     cart.map(cartItem => (
-                        <CartItem cartItem={cartItem}/>
+                        <CartItem cartItem={cartItem} key={cartItem.id} />
                     ))
                     : <p className="text-2xl text-center">The cart is empty</p>}
             </div>

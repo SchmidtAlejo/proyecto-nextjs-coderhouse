@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 export const metadata = {
   title: "About us",
   description: "Information about us"

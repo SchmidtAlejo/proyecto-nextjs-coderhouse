@@ -15,7 +15,7 @@ export default function CategoryListNavbar({ toggleCategory, setToggleCategory, 
             cache: "force-cache"
         })
             .then(res => res.json())
-            .then(res =>setCategories(res));
+            .then(res => setCategories(res));
     }, []);
 
     useEffect(() => {

@@ -3,11 +3,9 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Image from "next/image";
 
 const getProduct = async (id) => {
-    const response=  await fetch(`http://localhost:3000/api/products/${id}`,
+    const response = await fetch(`http://localhost:3000/api/products/${id}`,
         {
-            next: {
-                revalidate: 3600
-            }
+            cache: 'no-store'
         });
     if (!response.ok) {
         throw new Error('Error with the request')
@@ -15,7 +13,7 @@ const getProduct = async (id) => {
     return response.json();
 }
 
-export async function generateMetadata({params, searchParams}, parent) {
+export async function generateMetadata({ params, searchParams }, parent) {
     const product = await getProduct(params.productId);
     return {
         title: product.title,

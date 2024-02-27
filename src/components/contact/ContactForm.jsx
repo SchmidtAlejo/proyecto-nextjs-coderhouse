@@ -21,7 +21,7 @@ export default function ContactForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await fetch('http://localhost:3000/api/contact',{
+        await fetch('http://localhost:3000/api/contact', {
             method: "POST",
             body: JSON.stringify(values)
         });
@@ -30,9 +30,9 @@ export default function ContactForm() {
     return (
         <div className="bg-neutral-800 p-6 mt-6 rounded-lg">
             <div className="flex flex-col">
-                <input type="text" placeholder="Name*" name='name' onChange={handleChange} required/>
-                <input type="email" placeholder="Email*" name='email' onChange={handleChange} required/>
-                <input type="tel" placeholder="Phone" name='phone' onChange={handleChange} required/>
+                <input type="text" placeholder="Name*" name='name' onChange={handleChange} required />
+                <input type="email" placeholder="Email*" name='email' onChange={handleChange} required />
+                <input type="tel" placeholder="Phone" name='phone' onChange={handleChange} required />
             </div>
             <textarea name="message" cols="30" rows="10"
                 placeholder="Message*" onChange={handleChange} required></textarea>

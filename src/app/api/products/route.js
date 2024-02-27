@@ -1,7 +1,6 @@
 import { db } from "@/app/firebase/config";
-import categories from "@/data/categories";
-import products from "@/data/products";
-import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { products } from "@/data/products";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 

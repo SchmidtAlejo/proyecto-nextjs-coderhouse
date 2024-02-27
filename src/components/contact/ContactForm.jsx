@@ -1,7 +1,8 @@
 "use client"
 
 import React, { useState } from 'react'
-import ButtonFill from '../ui/ButtonFill'
+import ButtonFill from '../ui/ButtonFill';
+const API_URL = process.env.NEXT_URL_PROD;
 
 export default function ContactForm() {
 
@@ -21,7 +22,7 @@ export default function ContactForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await fetch('http://localhost:3000/api/contact', {
+        await fetch(`${API_URL}/api/contact`, {
             method: "POST",
             body: JSON.stringify(values)
         });

@@ -1,8 +1,9 @@
 import Image from "next/image";
 import ButtonFill from "../ui/ButtonFill";
+const API_URL = process.env.NEXT_URL_PROD;
 
 export default async function ProductsTable() {
-    const items = await fetch("http://localhost:3000/api/category/all products", { cache: "no-store" }).then(r => r.json());
+    const items = await fetch(`${API_URL}/api/category/all products`, { cache: "no-store" }).then(r => r.json());
 
     return (
         <div className="overflow-x-auto">

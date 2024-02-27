@@ -4,19 +4,19 @@ import capitalLeterHelper from "@/helpers/capitalLeterHelper";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-export default function CategoryListNavbar({ toggleCategory, setToggleCategory, closeMenu }) {
+export default function CategoryListNavbar({ toggleCategory, setToggleCategory, closeMenu, url }) {
 
     const categoryList = useRef(null);
 
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/category', {
-            cache: "force-cache"
+        fetch(`${url}/api/category`, {
+            cache: "no-store"
         })
             .then(res => res.json())
             .then(res => setCategories(res));
-    }, []);
+    }, [url]);
 
     useEffect(() => {
         if (toggleCategory) {

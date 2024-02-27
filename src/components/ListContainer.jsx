@@ -1,10 +1,11 @@
 import { revalidate } from "@/app/products/category/[category]/page";
 import Image from "next/image"
 import Link from "next/link"
+const API_URL = process.env.NEXT_URL_PROD;
 
 const getProducts = async (category) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/category/${category}`, { cache: "no-store" });
+        const response = await fetch(`${API_URL}/api/category/${category}`, { cache: "no-store" });
         if (!response.ok) {
             throw new Error('Error with the request')
         }

@@ -1,9 +1,10 @@
 import { Counter } from "@/components/Counter";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Image from "next/image";
+const API_URL = process.env.NEXT_URL_PROD;
 
 const getProduct = async (id) => {
-    const response = await fetch(`http://localhost:3000/api/products/${id}`,
+    const response = await fetch(`${API_URL}/api/products/${id}`,
         {
             cache: 'no-store'
         });

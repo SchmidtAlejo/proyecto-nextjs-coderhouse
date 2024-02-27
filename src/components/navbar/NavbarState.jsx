@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import CategoryListNavbar from "./CategoryListNavbar"
 
-export default function NavbarState() {
+export default function NavbarState({ url }) {
 
     const [toggleMenu, setToggleMenu] = useState(false);
     const [toggleCategory, setToggleCategory] = useState(false);
@@ -72,6 +72,7 @@ export default function NavbarState() {
                             closeCategoryList={closeCategoryList}
                             setToggleCategory={setToggleCategory}
                             closeMenu={closeMenu}
+                            url={url}
                         />
                     </li>
                     <li className="nav-item">

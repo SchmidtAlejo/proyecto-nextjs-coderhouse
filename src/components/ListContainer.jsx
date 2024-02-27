@@ -3,11 +3,16 @@ import Image from "next/image"
 import Link from "next/link"
 
 const getProducts = async (category) => {
-    const response = await fetch(`http://localhost:3000/api/category/${category}`, { next: { revalidate: 3600 } });
-    if (!response.ok) {
-        throw new Error('Error with the request')
+    try {
+        const response = await fetch(`http://localhost:3000/api/category/${category}`, { cache: "no-store" });
+        if (!response.ok) {
+            throw new Error('Error with the request')
+        }
+        return response.json();
+    } catch (error) {
+        console.error(error);
+        return [];
     }
-    return response.json();
 }
 
 export default async function ListContainer({ category }) {

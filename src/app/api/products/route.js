@@ -1,22 +1,33 @@
-import { db } from "@/app/firebase/config";
-import { products } from "@/data/products";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { db, storage } from "@/app/firebase/config";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { NextResponse } from "next/server";
 
 
 export async function POST(request, { params }) {
 
-    const prodRef = collection(db, 'products');
-
-    const querySnap = await getDocs(prodRef)
-
-    const response = querySnap.docs.map(doc => doc.data())
-
-    if (response.length === 0) {
-        products.forEach(async product => {
-            await setDoc(doc(db, "products", product.id.toString()), product);
-        })
+    const formData = await request.formData();
+    console.log(formData);
+    const file = formData.get("thumbnail");
+    const body = {
+        title: formData.get("title"),
+        description: formData.get("description"),
+        id: formData.get("id"),
+        stock: formData.get("stock"),
+        price: formData.get("price"),
+        category: formData.get("category")
+    };
+    console.log({ ...body, thumbnail: file });
+    const storageRef = ref(storage, `products/${body.id}`);
+    const fileSnapshot = await uploadBytes(storageRef, file);
+    const fileUrl = await getDownloadURL(fileSnapshot.ref);
+    const product = {
+        ...body,
+        thumbnail: fileUrl,
+        images: [fileUrl]
     }
 
-    return NextResponse.json(response.length);
+    await setDoc(doc(db, "products", product.id.toString()), product);
+
+    return NextResponse.json(product);
 }

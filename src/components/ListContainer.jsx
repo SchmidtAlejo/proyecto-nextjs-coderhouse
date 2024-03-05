@@ -1,24 +1,11 @@
-import { revalidate } from "@/app/products/category/[category]/page";
+import { getProducts } from "@/services/products/productsService";
 import Image from "next/image"
 import Link from "next/link"
 const API_URL = process.env.NEXT_URL_PROD;
 
-const getProducts = async (category) => {
-    try {
-        const response = await fetch(`${API_URL}/api/category/${category}`, { cache: "no-store" });
-        if (!response.ok) {
-            throw new Error('Error with the request')
-        }
-        return response.json();
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
-}
-
 export default async function ListContainer({ category }) {
 
-    const products = await getProducts(category);
+    const products = await getProducts(category, API_URL);
     return (
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 xl:gap-x-8">
             {

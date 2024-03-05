@@ -1,6 +1,7 @@
 "use client"
 
 import capitalLeterHelper from "@/helpers/capitalLeterHelper";
+import { getCategories } from "@/services/categories/categoriesService";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -11,10 +12,7 @@ export default function CategoryListNavbar({ toggleCategory, setToggleCategory, 
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        fetch(`${url}/api/category`, {
-            cache: "no-store"
-        })
-            .then(res => res.json())
+        getCategories(url)
             .then(res => setCategories(res));
     }, [url]);
 

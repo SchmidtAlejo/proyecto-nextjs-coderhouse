@@ -168,12 +168,13 @@ footer ul li a i {
   min-height: 100px;
 }
 
-.create-product input {
-  @apply my-4 w-full h-12 rounded-md bg-neutral-700 pl-4
+.create-product input,
+.create-product select {
+  @apply my-4 w-full h-12 rounded-md bg-neutral-700 px-4
           focus:outline-none focus:ring-1 focus:ring-neutral-600;
 }
 .create-product textarea {
-  @apply my-4 w-full h-12 rounded-md bg-neutral-700 pl-4 pt-2
+  @apply my-4 w-full h-12 rounded-md bg-neutral-700 px-4 pt-2
           focus:outline-none focus:ring-1 focus:ring-neutral-600;
   min-height: 100px;
 }

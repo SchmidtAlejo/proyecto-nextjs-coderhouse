@@ -1,5 +1,5 @@
-import products from "@/data/products"
 import CartItemContainer from "@/components/CartItemContainer";
+const API_URL = process.env.NEXT_URL_PROD
 
 export const metadata = {
     title: "Cart",
@@ -11,7 +11,7 @@ export default function page() {
         <main className="">
             <div className="container-space">
                 <h1 className="text-4xl">Cart</h1>
-                <CartItemContainer/>
+                <CartItemContainer URL={API_URL} />
             </div>
         </main>
     )

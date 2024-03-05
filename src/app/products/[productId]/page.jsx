@@ -1,21 +1,12 @@
 import { Counter } from "@/components/Counter";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import { getProduct } from "@/services/products/productsService";
 import Image from "next/image";
 const API_URL = process.env.NEXT_URL_PROD;
-
-const getProduct = async (id) => {
-    const response = await fetch(`${API_URL}/api/products/${id}`,
-        {
-            cache: 'no-store'
-        });
-    if (!response.ok) {
-        throw new Error('Error with the request')
-    }
-    return response.json();
-}
+import { ToastContainer, toast } from 'react-toastify';
 
 export async function generateMetadata({ params, searchParams }, parent) {
-    const product = await getProduct(params.productId);
+    const product = await getProduct(params.productId, API_URL);
     return {
         title: product.title,
         description: product.description
@@ -24,7 +15,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function page({ params }) {
 
-    const product = await getProduct(params.productId);
+    const product = await getProduct(params.productId, API_URL);
 
     return (
         <main className="product-detail">
@@ -44,10 +35,11 @@ export default async function page({ params }) {
                         <h1 className="text-4xl">{product.title}</h1>
                         <h2 className="text-3xl">${product.price}</h2>
                         <p className="text-lg">{product.description}</p>
-                        <Counter product={product} />
+                        <Counter product={product} toast={toast} />
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </main>
     )
 }

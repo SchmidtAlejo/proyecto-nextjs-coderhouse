@@ -4,19 +4,32 @@ import { useCount } from "@/hooks/useCount";
 import ButtonFill from "./ui/ButtonFill";
 import { useCartContext } from "./context/CartContext";
 import { useRouter } from "next/navigation";
+import { useAuthContext } from "./context/AuthContext";
 
-export const Counter = ({ product }) => {
+export const Counter = ({ product, toast }) => {
     const { count, decrement, increment } = useCount(0, 0, product.stock);
-    const { addToCart } = useCartContext();
+    const { addToCart, isInCart } = useCartContext();
+    const { user } = useAuthContext();
     const router = useRouter();
 
-    const handleOnClick = () =>{
-        if(count > 0){
-            addToCart({...product, qty: count});
+    const handleOnClick = () => {
+
+        if (user.logged === false) {
+            router.push('/login');
+            return
+        }
+
+        if (isInCart(product.id)) {
+            toast("The products is already in the cart")
+            return;
+        }
+
+        if (count > 0) {
+            addToCart({ ...product, qty: count });
             router.push('/cart');
         }
-        else{
-            console.log("The count is in 0");
+        else {
+            toast("The count is in 0");
         }
     }
 

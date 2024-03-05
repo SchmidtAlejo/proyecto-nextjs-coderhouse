@@ -6,6 +6,7 @@ import "../style.css";
 import Footer from "../components/Footer";
 import { CartProvider } from '@/components/context/CartContext';
 import { AuthProvider } from '@/components/context/AuthContext';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ['latin'] })
 

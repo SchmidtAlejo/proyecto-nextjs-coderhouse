@@ -6,6 +6,7 @@ import CartWidget from "./CartWidget"
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import CategoryListNavbar from "./CategoryListNavbar"
+import { useAuthContext } from "../context/AuthContext"
 
 export default function NavbarState({ url }) {
 
@@ -13,6 +14,8 @@ export default function NavbarState({ url }) {
     const [toggleCategory, setToggleCategory] = useState(false);
 
     const navBar = useRef(null);
+
+    const { role } = useAuthContext();
 
     const onResize = () => {
         if (typeof window !== 'undefined' && window.innerWidth > 768) {
@@ -29,10 +32,10 @@ export default function NavbarState({ url }) {
 
     useEffect(() => {
         if (toggleMenu) {
-            navBar.current.classList.replace('top-[-64px]', 'top-20');
+            navBar.current.classList.replace('top-[-136px]', 'top-20');
         }
         else {
-            navBar.current.classList.replace('top-20', 'top-[-64px]');
+            navBar.current.classList.replace('top-20', 'top-[-136px]');
             closeCategoryList();
         }
     }, [toggleMenu])
@@ -64,7 +67,7 @@ export default function NavbarState({ url }) {
                     </svg>
                 </button>
             </div>
-            <div className="fixed left-0 top-[-64px] bg-neutral-800 md:flex w-full md:static md:top-auto justify-between" id="navBar" ref={navBar}>
+            <div className="fixed left-0 top-[-136px] bg-neutral-800 md:flex w-full md:static md:top-auto justify-between item" id="navBar" ref={navBar}>
                 <ul className="flex flex-col md:flex-row text-center items-center gap-x-4 gap-y-3 transition-3 mx-auto">
                     <li className="nav-item h-full w-full">
                         <CategoryListNavbar
@@ -91,13 +94,23 @@ export default function NavbarState({ url }) {
                             Contact
                         </Link>
                     </li>
+                    {
+                        role === "admin" && (
+                            <li className="nav-item">
+                                <Link
+                                    href={"/admin"}
+                                    className="nav-link text-center"
+                                    onClick={closeMenu}>
+                                    Admin
+                                </Link>
+                            </li>
+                        )
+                    }
                 </ul>
-                <Link
-                    className="flex items-center justify-center md:justify-end gap-x-2 md:pr-[10px] cursor-pointer cart-widget  my-3"
-                    href={'/cart'}
-                    onClick={closeMenu}>
-                    <CartWidget />
-                </Link>
+                <div
+                    className="flex items-center justify-center md:justify-end gap-x-2 md:pr-[10px] cursor-pointer cart-widget  my-3">
+                    <CartWidget closeMenu={closeMenu} />
+                </div>
             </div>
         </>
     )

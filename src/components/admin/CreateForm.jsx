@@ -1,42 +1,36 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonFill from "../ui/ButtonFill";
-import { doc, setDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage } from "@/app/firebase/config";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from 'react-toastify';
+import { createProduct, getProduct, updateProduct } from "@/services/products/productsService";
+import { getCategories } from "@/services/categories/categoriesService";
+import Back from "../Back";
 
+export default function CreateForm({ URL, type, product }) {
 
-const createProduct = async (values, file) => {
-    const storageRef = ref(storage, `products/${values.id}`);
-    const fileSnapshot = await uploadBytes(storageRef, file);
-    const fileUrl = await getDownloadURL(fileSnapshot.ref);
-
-    console.log(fileUrl);
-    const refDoc = doc(db, "products", values.id);
-    return setDoc(refDoc, {
-        ...values,
-        thumbnail: fileUrl,
-        images: [fileUrl]
-    }).then(() => {
-        console.log("Document successfully written!");
-    }).catch((err) => console.error(err));
-}
-
-export default function CreateForm() {
+    const router = useRouter();
 
     const [values, setValues] = useState({
-        title: '',
-        description: '',
-        id: '',
-        stock: "",
-        price: "",
-        category: ''
+        title: product?.title || '',
+        description: product?.description || '',
+        id: product?.id || '',
+        stock: product?.stock || "",
+        price: product?.price || "",
+        category: product?.category || ''
     });
 
     const [file, setFile] = useState(null);
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        getCategories(URL)
+            .then(res => setCategories(res));
+    }, [URL]);
 
     const handleChange = (e) => {
+        console.log(values);
         setValues({
             ...values,
             [e.target.name]: e.target.value
@@ -45,68 +39,101 @@ export default function CreateForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await createProduct(values, file);
+
+        let error = false;
+
+        console.log(values);
+
+        Object.keys(values).forEach((key) => {
+            if (values[key] === '') {
+                error = true;
+            }
+        })
+
+        if (type !== 'edit' && file === null) {
+            error = true;
+        }
+
+        if (error) {
+            toast("Complete all fields");
+            return;
+        }
+        if (type !== 'edit') {
+            await createProduct(URL, values, file);
+        } else {
+            await updateProduct(product.id, values, URL);
+        }
+
+        router.push('/admin')
     }
 
     return (
         <div className="container m-auto mt-6 max-w-lg">
             <form onSubmit={handleSubmit} className="my-12">
+                <label htmlFor="title">Title</label>
                 <input
                     type="text"
                     value={values.title}
-                    required
                     name="title"
                     onChange={handleChange}
                     placeholder="Title"
                 />
+                <label htmlFor="file" hidden={type === 'edit'}>Image</label>
                 <input
                     type="file"
-                    required
                     name="file"
+                    hidden={type === 'edit'}
                     onChange={(e) => setFile(e.target.files[0])}
                 />
-                <input
-                    type="text"
-                    value={values.category}
-                    required
-                    name="category"
-                    onChange={handleChange}
-                    placeholder="Category"
-                />
+                <label htmlFor="category">Category</label>
+                <select name="category" id="category" onChange={handleChange}>
+                    {
+                        categories.map((category) => (
+                            <>
+                                {
+                                    category.id !== 'all products' && <option selected={category.id === product?.category} value={category.id} key={category.name}>{category.name}</option>
+                                }
+                            </>
+                        ))
+                    }
+                    <option selected={type !== 'edit'} value={''}>Selece a category</option>
+                </select>
+                <label htmlFor="id" hidden={type === 'edit'}>ID</label>
                 <input
                     type="text"
                     value={values.id}
-                    required
                     name="id"
                     onChange={handleChange}
                     placeholder="ID"
+                    hidden={type === 'edit'}
                 />
+                <label htmlFor="stock">Stock</label>
                 <input
                     type="text"
                     value={values.stock}
-                    required
                     name="stock"
                     onChange={handleChange}
                     placeholder="Stock"
                 />
+                <label htmlFor="price">Price</label>
                 <input
                     type="text"
                     value={values.price}
-                    required
                     name="price"
                     onChange={handleChange}
                     placeholder="Price"
                 />
+                <label htmlFor="description">Description</label>
                 <textarea
                     value={values.description}
-                    required
                     name="description"
                     onChange={handleChange}
                     placeholder="description"
                 />
-                <ButtonFill type="submit">Create</ButtonFill>
+                <ButtonFill type="submit">{type !== 'edit' ? "Create" : "Edit"}</ButtonFill>
+                <ToastContainer />
             </form>
-
+            <Back />
         </div>
     )
 }

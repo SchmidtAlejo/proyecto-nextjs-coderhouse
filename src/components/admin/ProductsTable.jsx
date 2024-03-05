@@ -1,9 +1,11 @@
 import Image from "next/image";
 import ButtonFill from "../ui/ButtonFill";
+import { getProducts } from "@/services/products/productsService";
+import Link from "next/link";
 const API_URL = process.env.NEXT_URL_PROD;
 
 export default async function ProductsTable() {
-    const items = await fetch(`${API_URL}/api/category/all products`, { cache: "no-store" }).then(r => r.json());
+    const items = await getProducts("all products", API_URL);
 
     return (
         <div className="overflow-x-auto">
@@ -27,7 +29,7 @@ export default async function ProductsTable() {
                                 <td className="p-2">{item.price}</td>
                                 <td className="p-2">{item.stock}</td>
                                 <td className="p-2">{item.id}</td>
-                                <td className="p-2"><ButtonFill>Edit</ButtonFill></td>
+                                <td className="p-2"><Link href={`/admin/edit/${item.id}`}><ButtonFill>Edit</ButtonFill></Link></td>
                             </tr>
                         ))
                     }

@@ -20,7 +20,7 @@ export default function OrdersTable({ URL }) {
         }).catch((err) => {
             console.error(err);
         })
-    }, [user])
+    }, [user, URL])
 
     return (
         <div>
@@ -51,7 +51,7 @@ export default function OrdersTable({ URL }) {
                         </div>
                         :
                         <>
-                            <h2 className="text-2xl mt-12 text-center">You don't have any order</h2>
+                            <h2 className="text-2xl mt-12 text-center">You don´t have any order</h2>
                         </>
                 }</> :
                     <div className="flex justify-center items-center h-80">

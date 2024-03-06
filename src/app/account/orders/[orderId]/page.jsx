@@ -1,7 +1,7 @@
 import Back from "@/components/Back";
 import { getOrderByOrderId } from "@/services/orders/ordersService";
 import Image from "next/image";
-const API_URL = process.env.NEXT_URL_PROD;
+const API_URL = process.env.NEXT_URL_DEV;
 
 export const metadata = {
     title: "Order",

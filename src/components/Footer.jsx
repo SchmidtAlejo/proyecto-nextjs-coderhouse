@@ -10,8 +10,7 @@ export default function Footer() {
                         className="hover:scale-105 transition-3"
                         src={logo}
                         alt="logo"
-                        width={1000}
-                        height={1000}
+                        placeholder="blur"
                     />
                 </Link>
                 <ul className="md:pl-4 md:border-l md:border-white">

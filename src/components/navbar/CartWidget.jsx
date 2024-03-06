@@ -18,13 +18,13 @@ export default function CartWidget({ closeMenu }) {
                         <Link href="/cart" className="flex gap-x-3" onClick={closeMenu}>
                             <p className="md:hidden">Cart</p>
                             <div className="relative">
-                                <Image src={cartIcon} alt="Cart icon" height={24} width={24} className="h-full" />
+                                <Image src={cartIcon} alt="Cart icon" className="h-full" />
                                 <span className="absolute top-[-50%] left-1/2 translate-middle flex justify-center items-center w-5 h-5 rounded-full text-xs bg-red-500 text-center">{cart.length}</span>
                             </div>
                         </Link>
                         <Link href="/account" className="flex gap-x-3" onClick={closeMenu}>
                             <p className="md:hidden">User</p>
-                            <Image src={userIcon} alt="user icon" width={24} height={24} className="h-full" />
+                            <Image src={userIcon} alt="user icon" className="h-full" />
 
                         </Link>
                     </div>

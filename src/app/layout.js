@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { CartProvider } from '@/components/context/CartContext';
 import { AuthProvider } from '@/components/context/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
             <Footer />
           </CartProvider>
         </AuthProvider>
+        <SpeedInsights />
       </body>
     </html>
   )

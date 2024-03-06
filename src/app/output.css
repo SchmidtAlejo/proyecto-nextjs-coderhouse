@@ -1179,6 +1179,11 @@ video {
   opacity: 0.7;
 }
 
+.blur {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 /* 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -1342,6 +1347,11 @@ body {
 
   .md\:pr-\[10px\] {
     padding-right: 10px;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 

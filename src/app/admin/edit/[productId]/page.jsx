@@ -1,6 +1,6 @@
 import CreateForm from "@/components/admin/CreateForm";
 import { getProduct } from "@/services/products/productsService";
-const API_URL = process.env.NEXT_URL_PROD;
+const API_URL = process.env.NEXT_URL_DEV;
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const product = await getProduct(params.productId, API_URL);

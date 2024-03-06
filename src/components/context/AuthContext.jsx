@@ -5,7 +5,7 @@ import { auth, provider } from "@/app/firebase/config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { createUser, createUserGoogle, getUser } from "@/services/users/users";
-const API_URL = process.env.NEXT_URL_PROD;
+const API_URL = process.env.NEXT_URL_DEV;
 
 const AuthContext = createContext();
 

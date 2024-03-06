@@ -13,6 +13,7 @@
     "watch:css": "npx tailwindcss -i ./src/app/globals.css -o ./src/app/output.css --watch"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^1.0.10",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
     "dotenv": "^16.4.5",

@@ -1,7 +1,7 @@
 import OrdersTable from "@/components/OrdersTable";
 import Spinner from "@/components/Spinner";
 import { Suspense } from "react";
-const API_URL = process.env.NEXT_URL_DEV;
+const API_URL = process.env.NEXT_URL_PROD;
 
 export const metadata = {
     title: "Orders",

@@ -1,5 +1,5 @@
 import CreateForm from "@/components/admin/CreateForm";
-const API_URL = process.env.NEXT_URL_DEV;
+const API_URL = process.env.NEXT_URL_PROD;
 
 export const metadata = {
     title: "Create product",

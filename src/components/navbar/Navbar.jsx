@@ -1,5 +1,5 @@
 import NavbarState from "./NavbarState";
-const API_URL = process.env.NEXT_URL_DEV;
+const API_URL = process.env.NEXT_URL_PROD;
 
 export default function Navbar() {
 

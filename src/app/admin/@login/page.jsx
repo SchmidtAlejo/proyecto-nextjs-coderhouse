@@ -1,5 +1,5 @@
 import LoginForm from "@/components/auth/LoginForm";
-const API_URL = process.env.NEXT_URL_DEV;
+const API_URL = process.env.NEXT_URL_PROD;
 
 export const metadata = {
     title: "Login",

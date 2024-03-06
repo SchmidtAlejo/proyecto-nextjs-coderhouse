@@ -28,7 +28,6 @@ export default function CartItemContainer({ URL }) {
         try {
             setIsLoading(true);
             const { order: orderId } = await createOrder(body, URL);
-            console.log(orderId);
             emptyCart();
             setIsLoading(false);
             router.push(`/cart/purchase/${orderId}`);

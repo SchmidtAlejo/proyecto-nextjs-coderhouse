@@ -5,6 +5,8 @@ import ButtonFill from "../ui/ButtonFill";
 import { useAuthContext } from "../context/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import googleIcon from '@/assets/google.svg'
 
 export default function LoginForm({ admin, URL }) {
     const { registerUser, loginUser, googleLogin } = useAuthContext();
@@ -81,7 +83,11 @@ export default function LoginForm({ admin, URL }) {
                     name="password"
                     onChange={handleChange} />
                 <ButtonFill type="submit">Login</ButtonFill>
-                {!admin && <ButtonFill onClick={handleSubmitGoogle} className="bg-neutral-600 hover:bg-neutral-700 mt-4">Login with Google</ButtonFill>}
+                {!admin &&
+                    <div className="w-full flex justify-center">
+                        <Image src={googleIcon} alt="google icon" onClick={handleSubmitGoogle} className="w-12 h-12 cursor-pointer" />
+                    </div>
+                }
             </form>
             {
                 !admin &&
@@ -108,7 +114,7 @@ export default function LoginForm({ admin, URL }) {
                         className="p-2 rounded w-full block bg-neutral-700 mt-4"
                         name="confirmPassword"
                         onChange={handleChangeRegister} />
-                    <ButtonFill type="submit" className="mt-auto">Login</ButtonFill>
+                    <ButtonFill type="submit" className="mt-auto">Register</ButtonFill>
                 </form>
             }
 

@@ -30,7 +30,6 @@ export default function CreateForm({ URL, type, product }) {
     }, [URL]);
 
     const handleChange = (e) => {
-        console.log(values);
         setValues({
             ...values,
             [e.target.name]: e.target.value
@@ -41,8 +40,6 @@ export default function CreateForm({ URL, type, product }) {
         e.preventDefault();
 
         let error = false;
-
-        console.log(values);
 
         Object.keys(values).forEach((key) => {
             if (values[key] === '') {

@@ -5,7 +5,7 @@ import { auth, provider } from "@/app/firebase/config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { createUser, createUserGoogle, getUser } from "@/services/users/users";
-const API_URL = process.env.NEXT_URL_PROD;
+const API_URL = process.env.NEXT_URL_DEV;
 
 const AuthContext = createContext();
 
@@ -55,9 +55,7 @@ export const AuthProvider = ({ children }) => {
     const loginUser = async ({ URL, email, password, callback, error }) => {
         try {
             const { user: userResponse } = await signInWithEmailAndPassword(auth, email, password);
-            console.log(userResponse);
             const response = await getUser(userResponse.uid, URL);
-            console.log(response);
             localStorage.setItem("role", response.role);
             setRole(response.role);
             callback();

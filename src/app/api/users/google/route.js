@@ -7,11 +7,7 @@ export async function POST(request, { params }) {
 
     const userRef = collection(db, 'users');
     const req = await request.json();
-    console.log(req);
     const user = { ...req, role: "client" };
-
-    console.log(user);
-
     const q = query(userRef, where('email', "==", user.email));
     const querySnap = await getDocs(q);
     const docs = querySnap.docs.map(doc => doc.data());

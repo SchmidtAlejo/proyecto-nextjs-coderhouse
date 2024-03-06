@@ -1,7 +1,7 @@
 import { getProducts } from "@/services/products/productsService";
 import Image from "next/image"
 import Link from "next/link"
-const API_URL = process.env.NEXT_URL_PROD;
+const API_URL = process.env.NEXT_URL_DEV;
 
 export default async function ListContainer({ category }) {
 

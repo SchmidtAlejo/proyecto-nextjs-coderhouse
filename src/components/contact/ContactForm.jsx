@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import ButtonFill from '../ui/ButtonFill';
-const API_URL = process.env.NEXT_URL_PROD;
+const API_URL = process.env.NEXT_URL_DEV;
 
 export default function ContactForm() {
 

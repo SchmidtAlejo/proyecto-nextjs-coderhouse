@@ -3,11 +3,9 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { NextResponse } from "next/server";
 
-
 export async function POST(request, { params }) {
 
     const formData = await request.formData();
-    console.log(formData);
     const file = formData.get("thumbnail");
     const body = {
         title: formData.get("title"),
@@ -17,7 +15,6 @@ export async function POST(request, { params }) {
         price: formData.get("price"),
         category: formData.get("category")
     };
-    console.log({ ...body, thumbnail: file });
     const storageRef = ref(storage, `products/${body.id}`);
     const fileSnapshot = await uploadBytes(storageRef, file);
     const fileUrl = await getDownloadURL(fileSnapshot.ref);

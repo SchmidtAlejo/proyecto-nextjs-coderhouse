@@ -2,7 +2,7 @@ import { Counter } from "@/components/Counter";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { getProduct } from "@/services/products/productsService";
 import Image from "next/image";
-const API_URL = process.env.NEXT_URL_PROD;
+const API_URL = process.env.NEXT_URL_DEV;
 import { ToastContainer, toast } from 'react-toastify';
 
 export async function generateMetadata({ params, searchParams }, parent) {

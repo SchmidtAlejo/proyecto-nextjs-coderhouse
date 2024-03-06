@@ -15,13 +15,9 @@ export const getProducts = async (category, API_URL) => {
         if (!response.ok) {
             throw new Error('Error with the request')
         }
-        const result = await response.json();
-        if (result.length === 0) {
-            throw new Error('Error with the request')
-        }
-        return await result;
+        return await await response.json();
     } catch (error) {
-        throw new Error('Error with the request')
+        return [];
     }
 }
 

@@ -37,7 +37,7 @@ export default function ContactForm() {
             </div>
             <textarea name="message" cols="30" rows="10"
                 placeholder="Message*" onChange={handleChange} required></textarea>
-            <ButtonFill onClick={handleSubmit}>
+            <ButtonFill onClick={handleSubmit} ariaLabel={"Send Message"}>
                 Send
             </ButtonFill>
         </div>

@@ -28,7 +28,11 @@ export default async function ProductsTable() {
                                 <td className="p-2">{item.price}</td>
                                 <td className="p-2">{item.stock}</td>
                                 <td className="p-2">{item.id}</td>
-                                <td className="p-2"><Link href={`/admin/edit/${item.id}`}><ButtonFill>Edit</ButtonFill></Link></td>
+                                <td className="p-2">
+                                    <Link href={`/admin/edit/${item.id}`} aria-label={"Edit"} rel="noopener noreferrer">
+                                        <ButtonFill ariaLabel={"Edit"}>Edit</ButtonFill>
+                                    </Link>
+                                </td>
                             </tr>
                         ))
                     }

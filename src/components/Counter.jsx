@@ -40,7 +40,7 @@ export const Counter = ({ product, toast }) => {
                 <p className="text-center self-center flex-grow w-20">{count}</p>
                 <button className="w-12 rounded-md hover:bg-slate-600" onClick={increment}>+</button>
             </div>
-            <ButtonFill onClick={handleOnClick}>
+            <ButtonFill onClick={handleOnClick} ariaLabel={"Add to cart"}>
                 Add to cart
             </ButtonFill>
         </div>

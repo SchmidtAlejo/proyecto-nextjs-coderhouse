@@ -58,10 +58,10 @@ export default function NavbarState() {
     return (
         <>
             <div className="px-3 md:px-0 flex flex-row justify-between items-center relative z-50 py-2 bg-neutral-800 w-full md:w-auto">
-                <Link href={"/"}>
+                <Link href={"/"} aria-label="Home">
                     <Image className="hover:scale-105 transition-3" src={logo} alt="logo" priority={1} />
                 </Link>
-                <button className="navbar-toggler md:hidden" onClick={onClickMenuButton}>
+                <button className="navbar-toggler md:hidden" onClick={onClickMenuButton} aria-label="Menu">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
                         <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
                     </svg>
@@ -81,7 +81,8 @@ export default function NavbarState() {
                         <Link
                             href={"/about-us"}
                             className="nav-link text-center block w-max"
-                            onClick={closeMenu}>
+                            onClick={closeMenu}
+                            aria-label="About us">
                             About us
                         </Link>
                     </li>
@@ -89,7 +90,8 @@ export default function NavbarState() {
                         <Link
                             href={"/contact"}
                             className="nav-link text-center"
-                            onClick={closeMenu}>
+                            onClick={closeMenu}
+                            aria-label="Contact">
                             Contact
                         </Link>
                     </li>
@@ -99,7 +101,8 @@ export default function NavbarState() {
                                 <Link
                                     href={"/admin"}
                                     className="nav-link text-center"
-                                    onClick={closeMenu}>
+                                    onClick={closeMenu}
+                                    aria-label="Admin">
                                     Admin
                                 </Link>
                             </li>

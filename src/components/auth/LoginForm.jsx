@@ -82,7 +82,7 @@ export default function LoginForm({ admin }) {
                     className="p-2 rounded w-full block bg-neutral-700 my-4"
                     name="password"
                     onChange={handleChange} />
-                <ButtonFill type="submit">Login</ButtonFill>
+                <ButtonFill type="submit" ariaLabel="Login" >Login</ButtonFill>
                 {!admin &&
                     <div className="w-full flex justify-center">
                         <Image src={googleIcon} alt="google icon" onClick={handleSubmitGoogle} className="w-12 h-12 cursor-pointer" />
@@ -114,7 +114,7 @@ export default function LoginForm({ admin }) {
                         className="p-2 rounded w-full block bg-neutral-700 mt-4"
                         name="confirmPassword"
                         onChange={handleChangeRegister} />
-                    <ButtonFill type="submit" className="mt-auto">Register</ButtonFill>
+                    <ButtonFill type="submit" className="mt-auto" ariaLabel={"Register"}>Register</ButtonFill>
                 </form>
             }
 

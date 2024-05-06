@@ -48,10 +48,10 @@ export default function CartItemContainer() {
                                 )) : <p className="text-2xl text-center">The cart is empty</p>}
                         </div>
                         <div className="mt-6 flex flex-col gap-y-4">
-                            <ButtonFill disabled={cart.length === 0} onClick={handleOnBuy}>
+                            <ButtonFill disabled={cart.length === 0} onClick={handleOnBuy} ariaLabel={"Buy"}>
                                 Buy
                             </ButtonFill>
-                            <ButtonFill onClick={emptyCart} className={"bg-red-500 hover:bg-red-400"}>
+                            <ButtonFill onClick={emptyCart} className={"bg-red-500 hover:bg-red-400"} ariaLabel={"Empty Cart"}>
                                 Empty Cart
                             </ButtonFill>
                         </div>

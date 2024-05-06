@@ -14,7 +14,7 @@ export default function page() {
         <main>
             <div className='container-space flex flex-col'>
                 <h1 className='text-4xl'>Account</h1>
-                <Link href={'/account/orders'} className='mt-12 text-lg text-blue-400'>See all order</Link>
+                <Link href={'/account/orders'} className='mt-12 text-lg text-blue-400' aria-label="See all orders" rel="noopener noreferrer">See all orders</Link>
                 <div className='w-40 mt-12'>
                     <LogoutButton />
                 </div>

@@ -12,7 +12,7 @@ export default function LogoutButton() {
 
     return (
         <div>
-            <ButtonFill onClick={() => logout(() => router.push('/'))} className="bg-red-500 hover:bg-red-400">
+            <ButtonFill onClick={() => logout(() => router.push('/'))} className="bg-red-500 hover:bg-red-400" ariaLabel={"Logout"}>
                 Logout
             </ButtonFill>
         </div>

@@ -127,7 +127,9 @@ export default function CreateForm({ type, product }) {
                     onChange={handleChange}
                     placeholder="description"
                 />
-                <ButtonFill type="submit">{type !== 'edit' ? "Create" : "Edit"}</ButtonFill>
+                <ButtonFill ariaLabel={type !== 'edit' ? "Create" : "Edit"} type="submit">
+                    {type !== 'edit' ? "Create" : "Edit"}
+                </ButtonFill>
                 <ToastContainer />
             </form>
             <Back />

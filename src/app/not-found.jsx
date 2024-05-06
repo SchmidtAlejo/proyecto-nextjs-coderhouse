@@ -6,7 +6,7 @@ export default function NotFound() {
         <main>
             <div className='container-space'>
                 <h1 className='text-4xl mb-12'>Error 404: Not found</h1>
-                <Link href={'/'} className='text-xl text-blue-400'>Go back home</Link>
+                <Link href={'/'} className='text-xl text-blue-400' aria-label="Go back home" rel="noopener noreferrer">Go back home</Link>
             </div>
         </main>
     )

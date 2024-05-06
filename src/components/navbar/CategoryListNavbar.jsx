@@ -53,7 +53,8 @@ export default function CategoryListNavbar({ toggleCategory, setToggleCategory, 
                                 <Link
                                     className="inline-block w-full h-full py-2"
                                     href={`/products/category/${category.id}`}
-                                    onClick={closeMenu}>
+                                    onClick={closeMenu}
+                                    aria-label={category.name}>
                                     {category.name}
                                 </Link>
                             </li>

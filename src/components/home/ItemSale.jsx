@@ -8,7 +8,7 @@ export default function ItemSale({ category, image }) {
     };
 
     return (
-        <Link href={'/products/category/'+category} className="home__sale__item">
+        <Link href={'/products/category/' + category} className="home__sale__item" aria-label={category}>
             <div style={divStyle} className="home__sale__item__background" ></div>
             <p>{capitalLeterHelper(category)}</p>
         </Link>

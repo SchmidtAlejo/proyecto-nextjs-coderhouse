@@ -48,7 +48,10 @@ export default function OrdersTable() {
                                             <tr key={order.id}>
                                                 <td className="p-2">{order.id}</td>
                                                 <td className="p-2">${order.total}</td>
-                                                <td className="p-2"><Link href={`/account/orders/${order.id}`}><ButtonFill>Details</ButtonFill></Link></td>
+                                                <td className="p-2">
+                                                    <Link href={`/account/orders/${order.id}`} aria-label="Details" rel="noopener noreferrer">
+                                                        <ButtonFill ariaLabel={"Details"}>Details</ButtonFill>
+                                                    </Link></td>
                                             </tr>
                                         ))
                                     }

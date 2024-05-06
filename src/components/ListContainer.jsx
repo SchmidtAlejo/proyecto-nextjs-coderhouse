@@ -12,23 +12,26 @@ export default async function ListContainer({ category }) {
                     <Link
                         className="h-72 md:h-56"
                         key={product.id}
-                        href={`/products/${product.id}`}>
+                        href={`/products/${product.id}`}
+                        aria-label={product.title}
+                        rel="noopener noreferrer">
                         <div className="group relative flex flex-col h-full">
                             <div className="flex-grow aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md
                                      bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-52">
                                 <Image
-                                    width={1000}
-                                    height={1000}
+                                    width={300}
+                                    height={200}
                                     src={product.thumbnail}
                                     alt={"Imagen de " + product.title}
-                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                                    priority={10} />
                             </div>
                             <div className="mt-4 flex justify-between">
                                 <div className="">
-                                    <h3 className="text-sm text-neutral-300">
+                                    <h2 className="text-sm text-neutral-300">
                                         <span aria-hidden="true" className="absolute inset-0"></span>
                                         {product.title}
-                                    </h3>
+                                    </h2>
                                 </div>
                                 <p className="text-sm font-medium text-gray-100">${product.price}</p>
                             </div>

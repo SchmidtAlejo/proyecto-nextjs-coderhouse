@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { useCartContext } from "../context/CartContext";
+import { useCartContext } from "../../context/CartContext";
 import cartIcon from "@/assets/cart.svg"
 import userIcon from '@/assets/user.svg'
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 import Link from "next/link";
 
 export default function CartWidget({ closeMenu }) {

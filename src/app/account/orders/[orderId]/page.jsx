@@ -1,7 +1,6 @@
 import Back from "@/components/Back";
 import { getOrderByOrderId } from "@/services/orders/ordersService";
 import Image from "next/image";
-const API_URL = process.env.NEXT_URL_PROD;
 
 export const metadata = {
     title: "Order",
@@ -10,7 +9,7 @@ export const metadata = {
 
 export default async function page({ params, searchParams }, parent) {
     const orderId = params.orderId;
-    const order = await getOrderByOrderId(orderId, API_URL);
+    const order = await getOrderByOrderId(orderId);
 
     return (
         <main>

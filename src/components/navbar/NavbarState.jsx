@@ -6,9 +6,9 @@ import CartWidget from "./CartWidget"
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import CategoryListNavbar from "./CategoryListNavbar"
-import { useAuthContext } from "../context/AuthContext"
+import { useAuthContext } from "../../context/AuthContext"
 
-export default function NavbarState({ url }) {
+export default function NavbarState() {
 
     const [toggleMenu, setToggleMenu] = useState(false);
     const [toggleCategory, setToggleCategory] = useState(false);
@@ -75,7 +75,6 @@ export default function NavbarState({ url }) {
                             closeCategoryList={closeCategoryList}
                             setToggleCategory={setToggleCategory}
                             closeMenu={closeMenu}
-                            url={url}
                         />
                     </li>
                     <li className="nav-item">

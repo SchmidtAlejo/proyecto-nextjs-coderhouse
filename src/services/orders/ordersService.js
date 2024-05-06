@@ -1,6 +1,8 @@
-export const createOrder = async (body, URL) => {
+const API_URL = process.env.NEXT_PUBLIC_URL_PROD;
+
+export const createOrder = async (body) => {
     try {
-        const response = await fetch(`${URL}/api/orders`, {
+        const response = await fetch(`${API_URL}/api/orders`, {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -10,18 +12,18 @@ export const createOrder = async (body, URL) => {
     }
 }
 
-export const getOrdersByUsersId = async (uid, URL) => {
+export const getOrdersByUsersId = async (uid) => {
     try {
-        const response = await fetch(`${URL}/api/orders/${uid}`, { cache: 'no-store' });
+        const response = await fetch(`${API_URL}/api/orders/${uid}`, { cache: 'no-store' });
         return await response.json();
     } catch (error) {
         console.error(error);
     }
 }
 
-export const getOrderByOrderId = async (id, URL) => {
+export const getOrderByOrderId = async (id) => {
     try {
-        const response = await fetch(`${URL}/api/orders/orderid/${id}`, { cache: 'force-cache' });
+        const response = await fetch(`${API_URL}/api/orders/orderid/${id}`, { cache: 'force-cache' });
         return await response.json();
     } catch (error) {
         console.error(error);

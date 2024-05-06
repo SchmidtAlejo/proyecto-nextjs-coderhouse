@@ -7,8 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import { createProduct, getProduct, updateProduct } from "@/services/products/productsService";
 import { getCategories } from "@/services/categories/categoriesService";
 import Back from "../Back";
+import { useQuery } from "@tanstack/react-query";
 
-export default function CreateForm({ URL, type, product }) {
+export default function CreateForm({ type, product }) {
 
     const router = useRouter();
 
@@ -22,12 +23,11 @@ export default function CreateForm({ URL, type, product }) {
     });
 
     const [file, setFile] = useState(null);
-    const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        getCategories(URL)
-            .then(res => setCategories(res));
-    }, [URL]);
+    const { data: categories, isLoading } = useQuery({
+        queryKey: ["categories"],
+        queryFn: () => getCategories()
+    })
 
     const handleChange = (e) => {
         setValues({
@@ -56,9 +56,9 @@ export default function CreateForm({ URL, type, product }) {
             return;
         }
         if (type !== 'edit') {
-            await createProduct(URL, values, file);
+            await createProduct(values, file);
         } else {
-            await updateProduct(product.id, values, URL);
+            await updateProduct(product.id, values);
         }
 
         router.push('/admin')
@@ -85,7 +85,7 @@ export default function CreateForm({ URL, type, product }) {
                 <label htmlFor="category">Category</label>
                 <select name="category" id="category" onChange={handleChange}>
                     {
-                        categories.map((category) => (
+                        !isLoading && categories.map((category) => (
                             <>
                                 {
                                     category.id !== 'all products' && <option selected={category.id === product?.category} value={category.id} key={category.name}>{category.name}</option>

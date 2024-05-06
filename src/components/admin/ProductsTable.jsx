@@ -2,10 +2,9 @@ import Image from "next/image";
 import ButtonFill from "../ui/ButtonFill";
 import { getProducts } from "@/services/products/productsService";
 import Link from "next/link";
-const API_URL = process.env.NEXT_URL_PROD;
 
 export default async function ProductsTable() {
-    const items = await getProducts("all products", API_URL);
+    const items = await getProducts("all products");
 
     return (
         <div className="overflow-x-auto">

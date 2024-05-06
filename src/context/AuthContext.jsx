@@ -5,7 +5,6 @@ import { auth, provider } from "@/app/firebase/config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { createUser, createUserGoogle, getUser } from "@/services/users/users";
-const API_URL = process.env.NEXT_URL_PROD;
 
 const AuthContext = createContext();
 
@@ -20,9 +19,10 @@ export const AuthProvider = ({ children }) => {
     const [role, setRole] = useState('client');
 
     useEffect(() => {
-        setRole(localStorage.getItem('role'));
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
+                const response = await getUser(user.uid);
+                setRole(response.role);
                 setUser({
                     logged: true,
                     email: user.email,
@@ -39,12 +39,11 @@ export const AuthProvider = ({ children }) => {
         })
     }, []);
 
-    const registerUser = async ({ email, password, URL, callback, error }) => {
+    const registerUser = async ({ email, password, callback, error }) => {
         try {
             const { user } = await createUserWithEmailAndPassword(auth, email, password);
             const body = { email: email, uid: user.uid };
-            await createUser(body, URL);
-            localStorage.setItem("role", "client");
+            await createUser(body);
             setRole('client')
             callback();
         } catch (e) {
@@ -52,11 +51,10 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const loginUser = async ({ URL, email, password, callback, error }) => {
+    const loginUser = async ({ email, password, callback, error }) => {
         try {
             const { user: userResponse } = await signInWithEmailAndPassword(auth, email, password);
-            const response = await getUser(userResponse.uid, URL);
-            localStorage.setItem("role", response.role);
+            const response = await getUser(userResponse.uid);
             setRole(response.role);
             callback();
         } catch (e) {
@@ -66,14 +64,13 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async (callback) => {
         await signOut(auth);
-        localStorage.setItem("role", "client");
         setRole('client')
         callback()
     }
 
-    const googleLogin = async (URL, callback) => {
+    const googleLogin = async (callback) => {
         const { user } = await signInWithPopup(auth, provider);
-        const response = await createUserGoogle({ uid: user.uid, email: user.email }, URL);
+        const response = await createUserGoogle({ uid: user.uid, email: user.email });
         await response.json().then(data => setRole(data.role));
         callback();
     }

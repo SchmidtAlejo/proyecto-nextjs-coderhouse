@@ -1,14 +1,13 @@
 import OrdersTable from "@/components/OrdersTable";
 import Spinner from "@/components/Spinner";
 import { Suspense } from "react";
-const API_URL = process.env.NEXT_URL_PROD;
 
 export const metadata = {
     title: "Orders",
     description: "Orders Information"
 }
 
-export default async function page() {
+export default function page() {
 
     return (
         <main>
@@ -19,7 +18,7 @@ export default async function page() {
                         <Spinner />
                     </div>
                 }>
-                    <OrdersTable URL={API_URL} />
+                    <OrdersTable />
                 </Suspense>
             </div>
         </main>

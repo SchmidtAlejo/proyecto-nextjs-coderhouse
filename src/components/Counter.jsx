@@ -2,9 +2,9 @@
 
 import { useCount } from "@/hooks/useCount";
 import ButtonFill from "./ui/ButtonFill";
-import { useCartContext } from "./context/CartContext";
+import { useCartContext } from "../context/CartContext";
 import { useRouter } from "next/navigation";
-import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 export const Counter = ({ product, toast }) => {
     const { count, decrement, increment } = useCount(0, 0, product.stock);

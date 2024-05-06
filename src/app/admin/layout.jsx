@@ -1,6 +1,6 @@
 "use client"
 
-import { useAuthContext } from "@/components/context/AuthContext"
+import { useAuthContext } from "@/context/AuthContext"
 
 export default function Adminlayout({ children, login }) {
 

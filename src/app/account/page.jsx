@@ -1,4 +1,4 @@
-import { useAuthContext } from '@/components/context/AuthContext'
+import { useAuthContext } from '@/context/AuthContext'
 import LogoutButton from '@/components/ui/LogoutButton'
 import Link from 'next/link'
 import React from 'react'

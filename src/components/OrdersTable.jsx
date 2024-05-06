@@ -1,26 +1,32 @@
 "use client"
 
 import { getOrdersByUsersId } from "@/services/orders/ordersService";
-import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ButtonFill from "./ui/ButtonFill";
 import Spinner from "./Spinner";
+import { useQuery } from "@tanstack/react-query";
 
-export default function OrdersTable({ URL }) {
+export default function OrdersTable() {
 
     const { user } = useAuthContext();
-    const [orders, setOrders] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    // const [orders, setOrders] = useState([]);
+    // const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        getOrdersByUsersId(user.uid, URL).then((res) => {
-            setIsLoading(false);
-            setOrders(res);
-        }).catch((err) => {
-            console.error(err);
-        })
-    }, [user, URL])
+    // useEffect(() => {
+    //     getOrdersByUsersId(user.uid).then((res) => {
+    //         setIsLoading(false);
+    //         setOrders(res);
+    //     }).catch((err) => {
+    //         console.error(err);
+    //     })
+    // }, [user])
+
+    const { data: orders, isLoading } = useQuery({
+        queryKey: ["orders"],
+        queryFn: () => getOrdersByUsersId(user.uid)
+    })
 
     return (
         <div>

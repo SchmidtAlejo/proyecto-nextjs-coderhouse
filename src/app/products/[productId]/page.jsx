@@ -2,11 +2,10 @@ import { Counter } from "@/components/Counter";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { getProduct } from "@/services/products/productsService";
 import Image from "next/image";
-const API_URL = process.env.NEXT_URL_PROD;
 import { ToastContainer, toast } from 'react-toastify';
 
 export async function generateMetadata({ params, searchParams }, parent) {
-    const product = await getProduct(params.productId, API_URL);
+    const product = await getProduct(params.productId);
     return {
         title: product.title,
         description: product.description
@@ -15,7 +14,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function page({ params }) {
 
-    const product = await getProduct(params.productId, API_URL);
+    const product = await getProduct(params.productId);
 
     return (
         <main className="product-detail">

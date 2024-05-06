@@ -1,4 +1,6 @@
-export const getCategories = async (API_URL) => {
+const API_URL = process.env.NEXT_PUBLIC_URL_PROD;
+
+export const getCategories = async () => {
     try {
         const response = await fetch(`${API_URL}/api/category`, {
             cache: "no-store"

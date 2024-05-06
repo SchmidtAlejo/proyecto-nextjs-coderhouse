@@ -2,13 +2,13 @@
 
 import { useState } from "react"
 import ButtonFill from "../ui/ButtonFill";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import googleIcon from '@/assets/google.svg'
 
-export default function LoginForm({ admin, URL }) {
+export default function LoginForm({ admin }) {
     const { registerUser, loginUser, googleLogin } = useAuthContext();
     const router = useRouter();
     const goToHome = () => {
@@ -43,11 +43,11 @@ export default function LoginForm({ admin, URL }) {
             toast("The password must be at least 6 characters");
             return
         }
-        loginUser({ URL: URL, ...values, callback: () => goToHome(), error: () => toast("Invalid email or password") });
+        loginUser({ ...values, callback: () => goToHome(), error: () => toast("Invalid email or password") });
     }
     const handleSubmitGoogle = (e) => {
         e.preventDefault();
-        googleLogin(URL, () => goToHome());
+        googleLogin(() => goToHome());
     }
 
     const handleSubmitRegister = (e) => {
@@ -61,7 +61,7 @@ export default function LoginForm({ admin, URL }) {
             toast("Passwords do not match");
             return;
         }
-        registerUser({ ...valuesRegister, URL: URL, callback: () => goToHome(), error: () => toast("User exist") });
+        registerUser({ ...valuesRegister, callback: () => goToHome(), error: () => toast("User exist") });
     }
 
     return (

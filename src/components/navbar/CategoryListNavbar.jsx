@@ -2,19 +2,18 @@
 
 import capitalLeterHelper from "@/helpers/capitalLeterHelper";
 import { getCategories } from "@/services/categories/categoriesService";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-export default function CategoryListNavbar({ toggleCategory, setToggleCategory, closeMenu, url }) {
+export default function CategoryListNavbar({ toggleCategory, setToggleCategory, closeMenu }) {
 
     const categoryList = useRef(null);
 
-    const [categories, setCategories] = useState([])
-
-    useEffect(() => {
-        getCategories(url)
-            .then(res => setCategories(res));
-    }, [url]);
+    const { data: categories, isLoading } = useQuery({
+        queryKey: ["categories"],
+        queryFn: () => getCategories()
+    })
 
     useEffect(() => {
         if (toggleCategory) {
@@ -48,7 +47,7 @@ export default function CategoryListNavbar({ toggleCategory, setToggleCategory, 
                 ref={categoryList}
             >
                 {
-                    categories.map(
+                    !isLoading && categories.map(
                         category => (
                             <li key={category.name} className="w-full text-white hover:text-neutral-300 hover:bg-neutral-700">
                                 <Link

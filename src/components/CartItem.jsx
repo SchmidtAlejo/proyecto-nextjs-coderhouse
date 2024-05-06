@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { useCartContext } from './context/CartContext';
+import { useCartContext } from '../context/CartContext';
 
 export default function CartItem({ cartItem }) {
 

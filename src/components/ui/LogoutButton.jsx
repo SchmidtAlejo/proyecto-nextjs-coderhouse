@@ -2,7 +2,7 @@
 
 import React from 'react'
 import ButtonFill from './ButtonFill'
-import { useAuthContext } from '../context/AuthContext'
+import { useAuthContext } from '../../context/AuthContext'
 import { useRouter } from 'next/navigation'
 
 export default function LogoutButton() {

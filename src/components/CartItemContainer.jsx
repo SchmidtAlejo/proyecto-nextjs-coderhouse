@@ -1,15 +1,15 @@
 'use client'
 
 import Back from "@/components/Back";
-import { useCartContext } from "./context/CartContext";
+import { useCartContext } from "../context/CartContext";
 import ButtonFill from "./ui/ButtonFill";
 import { useRouter } from "next/navigation";
 import CartItem from "./CartItem";
-import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 import { useState } from "react";
 import { createOrder } from "@/services/orders/ordersService";
 
-export default function CartItemContainer({ URL }) {
+export default function CartItemContainer() {
 
     const { cart, emptyCart, total } = useCartContext();
     const { user } = useAuthContext();
@@ -27,7 +27,7 @@ export default function CartItemContainer({ URL }) {
 
         try {
             setIsLoading(true);
-            const { order: orderId } = await createOrder(body, URL);
+            const { order: orderId } = await createOrder(body);
             emptyCart();
             setIsLoading(false);
             router.push(`/cart/purchase/${orderId}`);

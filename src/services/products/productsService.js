@@ -1,4 +1,6 @@
-export const getProduct = async (id, API_URL) => {
+const API_URL = process.env.NEXT_PUBLIC_URL_PROD;
+
+export const getProduct = async (id) => {
     const response = await fetch(`${API_URL}/api/products/${id}`,
         {
             cache: 'no-store'
@@ -9,7 +11,7 @@ export const getProduct = async (id, API_URL) => {
     return await response.json();
 }
 
-export const getProducts = async (category, API_URL) => {
+export const getProducts = async (category) => {
     try {
         const response = await fetch(`${API_URL}/api/category/${category}`, { cache: "no-store" })
         if (!response.ok) {
@@ -21,7 +23,7 @@ export const getProducts = async (category, API_URL) => {
     }
 }
 
-export const createProduct = async (URL, values, file) => {
+export const createProduct = async (values, file) => {
     try {
         const formData = new FormData();
         Object.keys(values).forEach((key) => {
@@ -29,7 +31,7 @@ export const createProduct = async (URL, values, file) => {
         })
         formData.set("thumbnail", file);
 
-        const response = await fetch(`${URL}/api/products`, {
+        const response = await fetch(`${API_URL}/api/products`, {
             method: "POST",
             body: formData
         });
@@ -39,9 +41,9 @@ export const createProduct = async (URL, values, file) => {
     }
 }
 
-export const updateProduct = async (id, body, URL) => {
+export const updateProduct = async (id, body) => {
     try {
-        const response = await fetch(`${URL}/api/products/${id}`, {
+        const response = await fetch(`${API_URL}/api/products/${id}`, {
             body: JSON.stringify(body),
             method: 'PUT'
         });

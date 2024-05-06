@@ -1,5 +1,4 @@
 import LoginForm from "@/components/auth/LoginForm";
-const API_URL = process.env.NEXT_URL_PROD;
 
 export const metadata = {
     title: "Login",
@@ -9,7 +8,7 @@ export const metadata = {
 export default function page() {
     return (
         <div>
-            <LoginForm admin={true} URL={API_URL} />
+            <LoginForm admin={true} />
         </div>
     )
 }

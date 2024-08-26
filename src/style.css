@@ -9,10 +9,12 @@ body {
   flex-direction: column;
   min-height: 100dvh;
 }
+
 body::-webkit-scrollbar {
   width: 8px;
   @apply bg-neutral-900;
 }
+
 body::-webkit-scrollbar-thumb {
   @apply bg-neutral-700;
   border-radius: 4px;
@@ -26,29 +28,36 @@ header {
   width: 100%;
   transition: background-color 0.3s ease-in-out;
 }
+
 header img {
   height: 64px;
   width: auto;
 }
+
 header .nav-item,
 header .cart-widget {
   @apply hover:text-neutral-300;
   transition: all 0.3s ease-in-out;
 }
+
 header #navBar {
   transition: top 0.3s ease-in-out;
 }
+
 header .category-list ul {
-  top: -200px;
+  top: -310px;
 }
+
 header .category-list ul::-webkit-scrollbar {
   width: 8px;
   @apply bg-zinc-800;
 }
+
 header .category-list ul::-webkit-scrollbar-thumb {
   @apply bg-zinc-700;
   border-radius: 4px;
 }
+
 header .category-list:hover ul {
   @apply top-full;
 }
@@ -68,6 +77,7 @@ footer {
   align-items: center;
   margin-top: auto;
 }
+
 footer .container {
   display: flex;
   align-items: center;
@@ -76,6 +86,7 @@ footer .container {
   flex-direction: column;
   margin-top: 32px;
 }
+
 @media screen and (min-width: 768px) {
   footer .container {
     flex-direction: row;
@@ -83,15 +94,18 @@ footer .container {
     margin-top: 0;
   }
 }
+
 footer img {
   height: 120px;
   width: auto;
 }
+
 @media screen and (min-width: 768px) {
   footer img {
     justify-content: start;
   }
 }
+
 footer ul {
   display: flex;
   gap: 24px;
@@ -100,14 +114,17 @@ footer ul {
   align-items: center;
   padding-left: 0;
 }
+
 footer ul li {
   list-style: none;
   transition: all 0.3s ease-in-out;
   @apply hover:text-neutral-300;
 }
+
 footer ul li a {
   text-decoration: none;
 }
+
 footer ul li a i {
   font-size: 32px;
 }
@@ -122,11 +139,13 @@ footer ul li a i {
   justify-content: center;
   align-items: center;
 }
+
 .home__sale__item {
   text-decoration: none;
   color: white;
   position: relative;
 }
+
 .home__sale__item__background {
   border-radius: 8px;
   height: 300px;
@@ -136,6 +155,7 @@ footer ul li a i {
   transition: 0.3s;
   transition: opacity 0.5 ease-in-out;
 }
+
 .home__sale__item p {
   width: 100%;
   height: 100%;
@@ -143,9 +163,11 @@ footer ul li a i {
   top: 0;
   display: none;
 }
+
 .home__sale__item:hover .home__sale__item__background {
   opacity: 0.5;
 }
+
 .home__sale__item:hover p {
   color: white;
   display: block;
@@ -159,23 +181,21 @@ footer ul li a i {
 }
 
 .contact input {
-  @apply my-4 w-full h-12 rounded-md bg-neutral-700 pl-4
-        focus:outline-none focus:ring-1 focus:ring-neutral-600;
+  @apply my-4 w-full h-12 rounded-md bg-neutral-700 pl-4 focus:outline-none focus:ring-1 focus:ring-neutral-600;
 }
+
 .contact textarea {
-  @apply my-4 w-full h-12 rounded-md bg-neutral-700 pl-4 pt-2
-        focus:outline-none focus:ring-1 focus:ring-neutral-600;
+  @apply my-4 w-full h-12 rounded-md bg-neutral-700 pl-4 pt-2 focus:outline-none focus:ring-1 focus:ring-neutral-600;
   min-height: 100px;
 }
 
 .create-product input,
 .create-product select {
-  @apply my-4 w-full h-12 rounded-md bg-neutral-700 px-4
-          focus:outline-none focus:ring-1 focus:ring-neutral-600;
+  @apply my-4 w-full h-12 rounded-md bg-neutral-700 px-4 focus:outline-none focus:ring-1 focus:ring-neutral-600;
 }
+
 .create-product textarea {
-  @apply my-4 w-full h-12 rounded-md bg-neutral-700 px-4 pt-2
-          focus:outline-none focus:ring-1 focus:ring-neutral-600;
+  @apply my-4 w-full h-12 rounded-md bg-neutral-700 px-4 pt-2 focus:outline-none focus:ring-1 focus:ring-neutral-600;
   min-height: 100px;
 }
 

@@ -1,4 +1,4 @@
-import capitalLeterHelper from "@/helpers/capitalLeterHelper";
+import { capitalLeterHelper } from "@/helpers/capitalLeterHelper";
 import Link from "next/link";
 
 export default function ItemSale({ category, image }) {

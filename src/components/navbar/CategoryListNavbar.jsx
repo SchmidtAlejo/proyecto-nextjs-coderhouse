@@ -1,20 +1,13 @@
 "use client"
 
-import capitalLeterHelper from "@/helpers/capitalLeterHelper";
-import { getCategories } from "@/services/categories/categoriesService";
-import { useQuery } from "@tanstack/react-query";
+import { capitalLeterHelper } from "@/helpers/capitalLeterHelper";
+import { categories } from "@/data/categories";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function CategoryListNavbar({ toggleCategory, setToggleCategory, closeMenu }) {
 
     const categoryList = useRef(null);
-
-    const { data: categories, isLoading } = useQuery({
-        queryKey: ["categories"],
-        queryFn: () => getCategories()
-    })
-
     useEffect(() => {
         if (toggleCategory) {
             categoryList.current.classList.replace('max-h-0', 'max-h-[200px]')
@@ -47,15 +40,15 @@ export default function CategoryListNavbar({ toggleCategory, setToggleCategory, 
                 ref={categoryList}
             >
                 {
-                    !isLoading && categories.map(
+                    categories.map(
                         category => (
-                            <li key={category.name} className="w-full text-white hover:text-neutral-300 hover:bg-neutral-700">
+                            <li key={category} className="w-full text-white hover:text-neutral-300 hover:bg-neutral-700">
                                 <Link
                                     className="inline-block w-full h-full py-2"
-                                    href={`/products/category/${category.id}`}
+                                    href={`/products/category/${category}`}
                                     onClick={closeMenu}
-                                    aria-label={category.name}>
-                                    {category.name}
+                                    aria-label={category}>
+                                    {capitalLeterHelper(category)}
                                 </Link>
                             </li>
                         )

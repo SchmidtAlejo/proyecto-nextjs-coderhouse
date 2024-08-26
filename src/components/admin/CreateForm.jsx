@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from 'react-toastify';
 import { createProduct, getProduct, updateProduct } from "@/services/products/productsService";
 import { getCategories } from "@/services/categories/categoriesService";
+import { categories } from "@/data/categories";
 import Back from "../Back";
 import { useQuery } from "@tanstack/react-query";
 
@@ -23,11 +24,6 @@ export default function CreateForm({ type, product }) {
     });
 
     const [file, setFile] = useState(null);
-
-    const { data: categories, isLoading } = useQuery({
-        queryKey: ["categories"],
-        queryFn: () => getCategories()
-    })
 
     const handleChange = (e) => {
         setValues({
@@ -85,7 +81,7 @@ export default function CreateForm({ type, product }) {
                 <label htmlFor="category">Category</label>
                 <select name="category" id="category" onChange={handleChange}>
                     {
-                        !isLoading && categories.map((category) => (
+                        categories.map((category) => (
                             <>
                                 {
                                     category.id !== 'all products' && <option selected={category.id === product?.category} value={category.id} key={category.name}>{category.name}</option>

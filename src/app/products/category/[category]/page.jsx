@@ -1,7 +1,7 @@
 import ListContainer from "@/components/ListContainer";
 import Spinner from "@/components/Spinner";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import capitalLeterHelper from "@/helpers/capitalLeterHelper";
+import { capitalLeterHelper } from "@/helpers/capitalLeterHelper";
 import { Suspense } from "react";
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -14,15 +14,15 @@ export async function generateMetadata({ params, searchParams }, parent) {
     }
 }
 
-export function generateStaticParams(){
+export function generateStaticParams() {
     return [
-        {category: 'all products'},
-        {category: 'smartphones'},
-        {category: 'laptops'},
-        {category: 'fragrances'},
-        {category: 'skincare'},
-        {category: 'groceries'},
-        {category: 'home-decoration'}
+        { category: 'all products' },
+        { category: 'smartphones' },
+        { category: 'laptops' },
+        { category: 'fragrances' },
+        { category: 'skincare' },
+        { category: 'groceries' },
+        { category: 'home-decoration' }
     ]
 }
 
@@ -44,7 +44,7 @@ export default async function page({ params }) {
                     <h1 className="text-2xl font-bold tracking-tight text-white">{categoryName}</h1>
                     <Suspense fallback={
                         <div className="flex justify-center items-center h-80">
-                            <Spinner/>
+                            <Spinner />
                         </div>
                     }>
                         <ListContainer category={category} />

@@ -36,7 +36,7 @@ export default function CategoryListNavbar({ toggleCategory, setToggleCategory, 
                 </svg>
             </div>
             <ul
-                className="md:absolute bg-zinc-800 pr-0 transition-3 w-full md:rounded-b-md md:w-1/2 md:translate-x-16 md:z-[-10] max-h-0 md:max-h-96 overflow-auto"
+                className="md:absolute bg-zinc-800 pr-0 transition-3 w-full md:rounded-b-md md:w-1/2 md:max-w-[600px] md:translate-x-16 md:z-[-10] max-h-0 md:max-h-96 overflow-auto"
                 ref={categoryList}
             >
                 {

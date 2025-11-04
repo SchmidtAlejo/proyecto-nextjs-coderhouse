@@ -17,7 +17,6 @@ export const getProducts = async (category) => {
         if (!response.ok) {
             throw new Error('Error with the request')
         }
-        console.log(response);
 
         return await await response.json();
     } catch (error) {

@@ -4,7 +4,7 @@ import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 
-export async function POST(request, { params }) {
+export async function POST(request) {
 
     const prodRef = collection(db, 'products');
 

@@ -6,11 +6,12 @@ import { Suspense } from "react";
 
 export async function generateMetadata({ params, searchParams }, parent) {
 
-    const validateCategorie = params.category !== "all%20products"
+    const { category } = await params
+    const validateCategorie = category !== "all%20products"
 
     return {
-        title: validateCategorie ? capitalLeterHelper(params.category) : "All products",
-        description: `List of ${capitalLeterHelper(params.category)} that are on sale`
+        title: validateCategorie ? capitalLeterHelper(category) : "All products",
+        description: `List of ${capitalLeterHelper(category)} that are on sale`
     }
 }
 
@@ -30,7 +31,7 @@ export const revalidate = 3600;
 
 export default async function page({ params }) {
 
-    const { category } = params
+    const { category } = await params
 
     const validateCategorie = category !== "all%20products";
 

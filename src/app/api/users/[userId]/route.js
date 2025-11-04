@@ -3,7 +3,7 @@ import { collection, doc, getDoc, getDocs, query, where } from "firebase/firesto
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
-    const { userId: id } = params;
+    const { userId: id } = await params;
 
     try {
         const docRef = collection(db, 'users');

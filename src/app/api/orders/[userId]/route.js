@@ -3,7 +3,8 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
-    const { userId } = params;
+    const { userId } = await params;
+    console.log(userId);
 
     const ref = collection(db, "orders");
     const q = query(ref, where('uid', "==", userId));

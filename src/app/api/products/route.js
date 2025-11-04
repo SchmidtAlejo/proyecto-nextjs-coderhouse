@@ -3,7 +3,7 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { NextResponse } from "next/server";
 
-export async function POST(request, { params }) {
+export async function POST(request) {
 
     const formData = await request.formData();
     const file = formData.get("thumbnail");

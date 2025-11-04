@@ -3,7 +3,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
-    const { orderId: id } = params;
+    const { orderId: id } = await params;
 
     const docRef = doc(db, 'orders', id);
 

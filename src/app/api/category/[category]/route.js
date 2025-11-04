@@ -9,7 +9,7 @@ const sleep = (timer) => {
 
 export async function GET(request, { params }) {
 
-    const { category } = params
+    const { category } = await params
 
     const prodRef = collection(db, 'products');
 

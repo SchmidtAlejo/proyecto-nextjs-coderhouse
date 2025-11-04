@@ -19,6 +19,9 @@ export const createUser = async (body) => {
 }
 
 export const getUser = async (uid) => {
-    const response = await fetch(`${API_URL}/api/users/${uid}`)
+    const response = await fetch(`${API_URL}/api/users/${uid}`).catch(error => {
+        console.error(error);
+        return null;
+    });
     return await response.json()
 }

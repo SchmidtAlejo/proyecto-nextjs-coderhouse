@@ -3,7 +3,7 @@ import { collection, doc, getDoc, query, updateDoc, where } from "firebase/fires
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
-    const { productId: id } = params;
+    const { productId: id } = await params;
 
     const docRef = doc(db, 'products', id);
 
@@ -13,7 +13,7 @@ export async function GET(request, { params }) {
 }
 
 export async function PUT(request, { params }) {
-    const { productId: id } = params;
+    const { productId: id } = await params;
     const body = await request.json();
 
     const ref = doc(db, 'products', id);

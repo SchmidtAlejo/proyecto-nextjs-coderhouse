@@ -8,7 +8,7 @@ export const metadata = {
 }
 
 export default async function page({ params, searchParams }, parent) {
-    const orderId = params.orderId;
+    const { orderId } = await params;
     const order = await getOrderByOrderId(orderId);
 
     return (

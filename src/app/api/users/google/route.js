@@ -3,7 +3,7 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 
-export async function POST(request, { params }) {
+export async function POST(request) {
 
     const userRef = collection(db, 'users');
     const req = await request.json();

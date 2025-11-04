@@ -2,7 +2,8 @@ import CreateForm from "@/components/admin/CreateForm";
 import { getProduct } from "@/services/products/productsService";
 
 export async function generateMetadata({ params, searchParams }, parent) {
-    const product = await getProduct(params.productId);
+    const { productId } = await params;
+    const product = await getProduct(productId);
     return {
         title: `Edit ${product.title}`,
         description: product.description
@@ -11,7 +12,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function page({ params, searchParams }, parent) {
 
-    const product = await getProduct(params.productId);
+    const { productId } = await params;
+    const product = await getProduct(productId);
 
     return (
         <main className="create-product">

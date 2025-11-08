@@ -9,18 +9,18 @@ interface Props {
 
 export default function Breadcrumbs({ category, productTitle }: Props) {
 
-  const isProductTitle = typeof productTitle !== 'undefined';
+  const isProductTitle = typeof productTitle !== "undefined";
 
   return (
     <div className="mb-8 flex gap-2">
       <BreadcrumbsBack />
       <p>|</p>
-      <Link href={'/'} className="text-blue-400" aria-label="Home">Home</Link>
+      <Link href={"/"} className="text-blue-400" aria-label="Home">Home</Link>
       <p>/</p>
       {
         !isProductTitle ?
           <p>{category}</p> :
-          <Link href={'/products/category/' + category} className="text-blue-400" aria-label={category}>{capitalLeterHelper(category)}</Link>
+          <Link href={"/products/category/" + category} className="text-blue-400" aria-label={category}>{capitalLeterHelper(category)}</Link>
       }
       {
         isProductTitle ?
@@ -31,5 +31,5 @@ export default function Breadcrumbs({ category, productTitle }: Props) {
           <></>
       }
     </div>
-  )
+  );
 }

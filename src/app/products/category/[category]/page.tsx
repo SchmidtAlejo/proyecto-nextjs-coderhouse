@@ -10,52 +10,52 @@ interface Params {
 
 export async function generateMetadata({ params }: {params: Promise<Params>}) {
 
-    const { category } = await params
-    const validateCategorie = category !== "all%20products"
+  const { category } = await params;
+  const validateCategorie = category !== "all%20products";
 
-    return {
-        title: validateCategorie ? capitalLeterHelper(category) : "All products",
-        description: `List of ${capitalLeterHelper(category)} that are on sale`
-    }
+  return {
+    title: validateCategorie ? capitalLeterHelper(category) : "All products",
+    description: `List of ${capitalLeterHelper(category)} that are on sale`
+  };
 }
 
 export function generateStaticParams() {
-    return [
-        { category: 'all products' },
-        { category: 'smartphones' },
-        { category: 'laptops' },
-        { category: 'fragrances' },
-        { category: 'skincare' },
-        { category: 'groceries' },
-        { category: 'home-decoration' }
-    ]
+  return [
+    { category: "all products" },
+    { category: "smartphones" },
+    { category: "laptops" },
+    { category: "fragrances" },
+    { category: "skincare" },
+    { category: "groceries" },
+    { category: "home-decoration" }
+  ];
 }
 
 export const revalidate = 3600;
 
 export default async function page({ params }: {params: Promise<Params>}) {
 
-    const { category } = await params
+  const { category } = await params;
 
-    const validateCategorie = category !== "all%20products";
+  const validateCategorie = category !== "all%20products";
 
-    const categoryName = validateCategorie ? capitalLeterHelper(category) : "All products"
+  const categoryName = validateCategorie ? capitalLeterHelper(category) : "All products";
 
-    return (
-        <main className="category">
-            <div className="bg-neutral-900">
-                <div className="container-space">
-                    <Breadcrumbs category={categoryName} />
-                    <h1 className="text-2xl font-bold tracking-tight text-white">{categoryName}</h1>
-                    <Suspense fallback={
-                        <div className="flex justify-center items-center h-80">
-                            <Spinner />
-                        </div>
-                    }>
-                        <ListContainer category={category} />
-                    </Suspense>
-                </div>
+  return (
+    <main className="category">
+      <div className="bg-neutral-900">
+        <div className="container-space">
+          <Breadcrumbs category={categoryName} />
+          <h1 className="text-2xl font-bold tracking-tight text-white">{categoryName}</h1>
+          <Suspense fallback={
+            <div className="flex h-80 items-center justify-center">
+              <Spinner />
             </div>
-        </main>
-    )
+          }>
+            <ListContainer category={category} />
+          </Suspense>
+        </div>
+      </div>
+    </main>
+  );
 }

@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
-import { CartItem } from '@/utils/interface';
+import { CartItem } from "@/utils/interface";
 import {
   createContext,
   useContext,
   useEffect,
   useState,
   ReactNode,
-} from 'react';
+  startTransition,
+} from "react";
 interface CartContextType {
   cart: CartItem[];
   total: number;
@@ -22,7 +23,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const useCartContext = (): CartContextType => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error('useCartContext must be used within a CartProvider');
+    throw new Error("useCartContext must be used within a CartProvider");
   }
   return context;
 };
@@ -36,11 +37,13 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
-    const storedCart = localStorage.getItem('cart');
-    const storedTotal = localStorage.getItem('total');
+    const storedCart = localStorage.getItem("cart");
+    const storedTotal = localStorage.getItem("total");
 
-    if (storedCart) setCart(JSON.parse(storedCart));
-    if (storedTotal) setTotal(JSON.parse(storedTotal));
+    startTransition(() => {
+      if (storedCart) setCart(JSON.parse(storedCart));
+      if (storedTotal) setTotal(JSON.parse(storedTotal));
+    });
   }, []);
 
   const addToCart = (item: CartItem) => {
@@ -50,8 +53,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCart(newCart);
     setTotal(newTotal);
 
-    localStorage.setItem('cart', JSON.stringify(newCart));
-    localStorage.setItem('total', JSON.stringify(newTotal));
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    localStorage.setItem("total", JSON.stringify(newTotal));
   };
 
   const isInCart = (id: string): boolean => {
@@ -61,8 +64,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   const emptyCart = () => {
     setCart([]);
     setTotal(0);
-    localStorage.removeItem('cart');
-    localStorage.removeItem('total');
+    localStorage.removeItem("cart");
+    localStorage.removeItem("total");
   };
 
   const removeItem = (item: CartItem) => {
@@ -77,8 +80,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCart(newCart);
     setTotal(newTotal);
 
-    localStorage.setItem('cart', JSON.stringify(newCart));
-    localStorage.setItem('total', JSON.stringify(newTotal));
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    localStorage.setItem("total", JSON.stringify(newTotal));
   };
 
   return (

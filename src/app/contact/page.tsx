@@ -3,7 +3,7 @@ import ContactForm from "@/components/contact/ContactForm";
 export const metadata = {
   title: "Contact",
   description: "Contact with our staff"
-}
+};
 
 export default function page() {
   return (
@@ -13,5 +13,5 @@ export default function page() {
         <ContactForm />
       </div>
     </main>
-  )
+  );
 }

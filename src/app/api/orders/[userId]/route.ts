@@ -7,13 +7,13 @@ interface Params {
 }
 
 export async function GET(request: NextRequest, { params }: {params: Promise<Params>}) {
-    const { userId } = await params;
+  const { userId } = await params;
 
-    const ref = collection(db, "orders");
-    const q = query(ref, where('uid', "==", userId));
-    const docSnap = await getDocs(q);
-    const result = docSnap.docs.map(doc => {
-        return { id: doc.id, ...doc.data() };
-    });
-    return NextResponse.json(result);
+  const ref = collection(db, "orders");
+  const q = query(ref, where("uid", "==", userId));
+  const docSnap = await getDocs(q);
+  const result = docSnap.docs.map(doc => {
+    return { id: doc.id, ...doc.data() };
+  });
+  return NextResponse.json(result);
 }

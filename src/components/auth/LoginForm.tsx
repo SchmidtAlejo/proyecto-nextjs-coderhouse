@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState, ChangeEvent, FormEvent } from 'react';
-import ButtonFill from '../ui/ButtonFill';
-import { useAuthContext } from '../../context/AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import googleIcon from '@/assets/google.svg';
+import { useState, ChangeEvent, FormEvent } from "react";
+import ButtonFill from "../ui/ButtonFill";
+import { useAuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import googleIcon from "@/assets/google.svg";
 
 interface LoginFormProps {
   admin?: boolean;
@@ -26,18 +26,18 @@ export default function LoginForm({ admin }: LoginFormProps) {
   const router = useRouter();
 
   const goToHome = () => {
-    router.push('/');
+    router.push("/");
   };
 
   const [values, setValues] = useState<LoginValues>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [valuesRegister, setValuesRegister] = useState<RegisterValues>({
-    email: '',
-    password: '',
-    confirmPassword: '',
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -50,18 +50,18 @@ export default function LoginForm({ admin }: LoginFormProps) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (values.email === '' || values.password === '') {
-      toast('Incomplete data');
+    if (values.email === "" || values.password === "") {
+      toast("Incomplete data");
       return;
     }
     if (values.password.length < 6) {
-      toast('The password must be at least 6 characters');
+      toast("The password must be at least 6 characters");
       return;
     }
     loginUser({
       ...values,
       callback: () => goToHome(),
-      error: () => toast('Invalid email or password'),
+      error: () => toast("Invalid email or password"),
     });
   };
 
@@ -73,35 +73,35 @@ export default function LoginForm({ admin }: LoginFormProps) {
   const handleSubmitRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
-      valuesRegister.email === '' ||
-      valuesRegister.password === '' ||
-      valuesRegister.confirmPassword === ''
+      valuesRegister.email === "" ||
+      valuesRegister.password === "" ||
+      valuesRegister.confirmPassword === ""
     ) {
-      toast('Incomplete data');
+      toast("Incomplete data");
       return;
     }
 
     if (valuesRegister.password !== valuesRegister.confirmPassword) {
-      toast('Passwords do not match');
+      toast("Passwords do not match");
       return;
     }
 
     registerUser({
       ...valuesRegister,
       callback: () => goToHome(),
-      error: () => toast('User exist'),
+      error: () => toast("User exist"),
     });
   };
 
   return (
-    <div className="bg-neutral-800 px-8 py-6 rounded-md flex gap-x-4">
+    <div className="flex gap-x-4 rounded-md bg-neutral-800 px-8 py-6">
       <form className="flex-1" onSubmit={handleSubmit}>
         <h2 className="text-xl">Login</h2>
         <input
           type="email"
           value={values.email}
           placeholder="Email"
-          className="p-2 rounded w-full block bg-neutral-700 my-4"
+          className="my-4 block w-full rounded bg-neutral-700 p-2"
           name="email"
           onChange={handleChange}
         />
@@ -109,7 +109,7 @@ export default function LoginForm({ admin }: LoginFormProps) {
           type="password"
           value={values.password}
           placeholder="Password"
-          className="p-2 rounded w-full block bg-neutral-700 my-4"
+          className="my-4 block w-full rounded bg-neutral-700 p-2"
           name="password"
           onChange={handleChange}
         />
@@ -117,25 +117,25 @@ export default function LoginForm({ admin }: LoginFormProps) {
           Login
         </ButtonFill>
         {!admin && (
-          <div className="w-full flex justify-center">
+          <div className="flex w-full justify-center">
             <Image
               src={googleIcon}
               alt="google icon"
               onClick={handleSubmitGoogle}
-              className="w-12 h-12 cursor-pointer"
+              className="size-12 cursor-pointer"
             />
           </div>
         )}
       </form>
 
       {!admin && (
-        <form className="flex-1 flex flex-col" onSubmit={handleSubmitRegister}>
+        <form className="flex flex-1 flex-col" onSubmit={handleSubmitRegister}>
           <h2 className="text-xl">Register</h2>
           <input
             type="email"
             value={valuesRegister.email}
             placeholder="Email"
-            className="p-2 rounded w-full block bg-neutral-700 mt-4"
+            className="mt-4 block w-full rounded bg-neutral-700 p-2"
             name="email"
             onChange={handleChangeRegister}
           />
@@ -143,7 +143,7 @@ export default function LoginForm({ admin }: LoginFormProps) {
             type="password"
             value={valuesRegister.password}
             placeholder="Password"
-            className="p-2 rounded w-full block bg-neutral-700 mt-4"
+            className="mt-4 block w-full rounded bg-neutral-700 p-2"
             name="password"
             onChange={handleChangeRegister}
           />
@@ -151,7 +151,7 @@ export default function LoginForm({ admin }: LoginFormProps) {
             type="password"
             value={valuesRegister.confirmPassword}
             placeholder="Confirm password"
-            className="p-2 rounded w-full block bg-neutral-700 mt-4"
+            className="mt-4 block w-full rounded bg-neutral-700 p-2"
             name="confirmPassword"
             onChange={handleChangeRegister}
           />

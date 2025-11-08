@@ -17,7 +17,6 @@ import {
   onAuthStateChanged,
   signOut,
   signInWithPopup,
-  User as FirebaseUser,
 } from "firebase/auth";
 import { createUser, createUserGoogle, getUser } from "@/services/users/users";
 

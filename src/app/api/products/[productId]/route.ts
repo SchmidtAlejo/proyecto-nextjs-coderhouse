@@ -1,5 +1,5 @@
 import { db } from "@/firebase/config";
-import { collection, doc, getDoc, query, updateDoc, where } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 
 interface Params {
@@ -7,21 +7,21 @@ interface Params {
 }
 
 export async function GET(request: NextRequest, { params }: {params: Promise<Params>}) {
-    const { productId: id } = await params;
+  const { productId: id } = await params;
 
-    const docRef = doc(db, 'products', id);
+  const docRef = doc(db, "products", id);
 
-    const docSnap = await getDoc(docRef);
+  const docSnap = await getDoc(docRef);
 
-    return NextResponse.json(docSnap.data());
+  return NextResponse.json(docSnap.data());
 }
 
 export async function PUT(request: NextRequest, { params }: {params: Promise<Params>}) {
-    const { productId: id } = await params;
-    const body = await request.json();
+  const { productId: id } = await params;
+  const body = await request.json();
 
-    const ref = doc(db, 'products', id);
-    await updateDoc(ref, body);
+  const ref = doc(db, "products", id);
+  await updateDoc(ref, body);
 
-    return NextResponse.json({ message: 'Product update' })
+  return NextResponse.json({ message: "Product update" });
 }

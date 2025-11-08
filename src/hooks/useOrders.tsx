@@ -9,6 +9,7 @@ interface Props {
 const useOrders = (props: Props) => {
 
   const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     try {
@@ -16,17 +17,18 @@ const useOrders = (props: Props) => {
         const response = await getOrdersByUsersId(props.userId.toString());
 
         if(response){
-          throw new Error("Error on request")
+          throw new Error("Error on request");
         }
 
-        setOrders(response)
-      })()
+        setIsLoading(false);
+        setOrders(response);
+      })();
     } catch (error) {
       console.error(error);      
     }
-  }, [props.userId])
+  }, [props.userId]);
 
-  return {orders};
-}
+  return {orders, isLoading};
+};
 
 export default useOrders;

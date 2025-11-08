@@ -2,7 +2,7 @@
 export const metadata = {
   title: "About us",
   description: "Information about us"
-}
+};
 
 export default function page() {
   return (
@@ -46,5 +46,5 @@ export default function page() {
         </p>
       </div>
     </main>
-  )
+  );
 }

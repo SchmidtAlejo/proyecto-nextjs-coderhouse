@@ -50,6 +50,7 @@ export default function CreateForm({ type, product }: CreateFormProps) {
     let error = false;
 
     Object.keys(values).forEach((key) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if ((values as any)[key] === "") {
         error = true;
       }

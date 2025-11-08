@@ -9,21 +9,21 @@ interface Params {
 
 export async function GET(request: NextRequest, { params }: {params: Promise<Params>}) {
 
-    const { category } = await params
+  const { category } = await params;
 
-    const prodRef = collection(db, 'products');
-
-
-    const q = category === 'all products' ?
-        prodRef :
-        query(prodRef, where('category', "==", category));
+  const prodRef = collection(db, "products");
 
 
-    const querySnap = await getDocs(q);
+  const q = category === "all products" ?
+    prodRef :
+    query(prodRef, where("category", "==", category));
+
+
+  const querySnap = await getDocs(q);
     
-    const docs = querySnap.docs.map(doc => doc.data());
+  const docs = querySnap.docs.map(doc => doc.data());
 
-    revalidatePath('category/[category]', "page");
+  revalidatePath("category/[category]", "page");
 
-    return NextResponse.json(docs);
+  return NextResponse.json(docs);
 }

@@ -7,11 +7,11 @@ interface Params {
 }
 
 export async function GET(request: NextRequest, { params }: {params: Promise<Params>}) {
-    const { orderId: id } = await params;
+  const { orderId: id } = await params;
 
-    const docRef = doc(db, 'orders', id);
+  const docRef = doc(db, "orders", id);
 
-    const docSnap = await getDoc(docRef);
+  const docSnap = await getDoc(docRef);
 
-    return NextResponse.json(docSnap.data());
+  return NextResponse.json(docSnap.data());
 }

@@ -13,7 +13,7 @@ export interface Product {
   thumbnail: string
   id: number | string
   qty: number
-  stock: number | string
+  stock: number
   returnPolicy?: string
   dimensions?: Dimensions
   meta?: Meta
